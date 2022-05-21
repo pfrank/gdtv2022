@@ -1298,14 +1298,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: 0, y: 45.5, z: -11.8}
+  m_LocalRotation: {x: 0, y: 0.7372774, z: -0.67559016, w: 0}
+  m_LocalPosition: {x: 0, y: 47.97, z: 3.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 85, y: 180, z: 0}
 --- !u!1 &1008362729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,8 +1678,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1602633124}
   - component: {fileID: 1602633125}
+  - component: {fileID: 1602633126}
   m_Layer: 0
-  m_Name: Target
+  m_Name: Tower
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1715,6 +1716,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6071491, y: 2.1417477, z: 1.4770737}
   m_Center: {x: 0.010428429, y: 0.94965637, z: -0.054058075}
+--- !u!114 &1602633126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602633123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9873f173f3b530e488db5c5107d828c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1603306499
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,15 +9,15 @@ public class Enemy : MonoBehaviour
 
     private Path path;
     private int currWaypointIndex = 0;
-    private Transform target;
+    private Transform tower;
 
     private void Start()
     {
         path = GameObject.Find("Path").GetComponent<Path>();
-        target = GameObject.Find("Target").transform;
+        tower = GameObject.Find("Tower").transform;
 
         // The target is our final waypoint
-        path.waypoints.Add(target);
+        path.waypoints.Add(tower);
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     private void MoveAlongPath()
     {
         // Has the target been reached?
-        if (transform.position == target.position)
+        if (transform.position == tower.position)
         {
             TargetReached();
             return;
@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Debug.Log($"{transform.name} took {damage} damaage ({health} health remaining.");
+
         if (health <= 0)
         {
             Die();
@@ -69,6 +71,7 @@ public class Enemy : MonoBehaviour
     private void TargetReached()
     {
         Debug.Log("Target Reached!");
+        tower.GetComponent<Tower>().TakeDamage(damage);
         Destroy(gameObject);
     }
 }
