@@ -545,7 +545,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314069618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.64, y: 0.5, z: -23.35}
+  m_LocalPosition: {x: -13.64, y: 0, z: -23.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -576,7 +576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375645214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.12, y: 0.5, z: 1.09}
+  m_LocalPosition: {x: 10.12, y: 0, z: 1.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1457,7 +1457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231837970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.64, y: 0.5, z: 1.09}
+  m_LocalPosition: {x: -13.64, y: 0, z: 1.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1680,7 +1680,7 @@ GameObject:
   - component: {fileID: 1602633125}
   - component: {fileID: 1602633126}
   m_Layer: 0
-  m_Name: Tower
+  m_Name: Castle
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1725,9 +1725,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1602633123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9873f173f3b530e488db5c5107d828c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d637adabc1636b438b1204ae54c6ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!1001 &1603306499
 PrefabInstance:
   m_ObjectHideFlags: 0

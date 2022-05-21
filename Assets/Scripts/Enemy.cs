@@ -9,15 +9,15 @@ public class Enemy : MonoBehaviour
 
     private Path path;
     private int currWaypointIndex = 0;
-    private Transform tower;
+    private Transform castle;
 
     private void Start()
     {
         path = GameObject.Find("Path").GetComponent<Path>();
-        tower = GameObject.Find("Tower").transform;
+        castle = GameObject.Find("Castle").transform;
 
         // The target is our final waypoint
-        path.waypoints.Add(tower);
+        path.waypoints.Add(castle);
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     private void MoveAlongPath()
     {
         // Has the target been reached?
-        if (transform.position == tower.position)
+        if (transform.position == castle.position)
         {
             TargetReached();
             return;
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
     private void TargetReached()
     {
         Debug.Log("Target Reached!");
-        tower.GetComponent<Tower>().TakeDamage(damage);
+        castle.GetComponent<Castle>().TakeDamage(damage);
         Destroy(gameObject);
     }
 }

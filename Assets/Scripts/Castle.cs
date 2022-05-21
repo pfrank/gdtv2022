@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Castle : MonoBehaviour
 {
     [SerializeField] int health = 100;
 
@@ -23,7 +23,7 @@ public class Tower : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Tower Destroyed, Game Over!");
+        Debug.Log("Castle Destroyed, Game Over!");
         Destroy(gameObject);
     }
 }
