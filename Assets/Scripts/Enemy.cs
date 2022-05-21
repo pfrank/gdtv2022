@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
@@ -34,17 +33,9 @@ public class Enemy : MonoBehaviour
         if (castle == null)
             return;
 
-        // Has the target been reached?
-        if (transform.position == castle.transform.position)
-        {
-            TargetReached();
-            return;
-        }
-
-        if (currWaypointIndex >= path.waypoints.Count)
-            return;
-
         Vector3 targetPosition = path.waypoints[currWaypointIndex].position;
+        // Do not move along the Y axis, just X and Z
+        targetPosition = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
         transform.position = Vector3.MoveTowards(
             transform.position,
             targetPosition,
@@ -55,7 +46,13 @@ public class Enemy : MonoBehaviour
 
         // Waypoint reached, go to the next waypoint
         if (transform.position == targetPosition)
+        {
             currWaypointIndex++;
+            if (currWaypointIndex >= path.waypoints.Count)
+            {
+                TargetReached();
+            }
+        }
     }
 
     public void TakeDamage(int damage)

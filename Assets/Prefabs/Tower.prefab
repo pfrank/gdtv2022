@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3223934855663746486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.13, z: -0}
+  m_LocalPosition: {x: 0, y: 1.42, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 4382401588673464800}
   - component: {fileID: 4382401588673464829}
   - component: {fileID: 4382401588673464830}
-  - component: {fileID: 4382401588673464831}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -213,20 +212,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4382401588673464831
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4382401588673464801}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &4382401589767233266
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +221,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4382401589767233265}
-  - component: {fileID: 1533009343}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -261,23 +245,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1533009343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4382401589767233266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5814b3943cb4f9418e73eaa6777ff23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  attackRadius: 10
-  attackDelay: 1
-  projectile: {fileID: 652976743065229113, guid: f7597b13706701e43b5413fa72644119, type: 3}
-  projectileOrigin: {fileID: 0}
 --- !u!1 &5006740143167881852
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7142690000333440484}
+  - component: {fileID: 644362792}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -410,3 +378,20 @@ Transform:
   m_Father: {fileID: 4382401589767233265}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &644362792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8857083218657802755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5814b3943cb4f9418e73eaa6777ff23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  attackRadius: 10
+  attackDelay: 1.25
+  projectile: {fileID: 652976743065229113, guid: f7597b13706701e43b5413fa72644119, type: 3}
+  projectileOrigin: {fileID: 3663981805867965689}

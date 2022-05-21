@@ -68,6 +68,10 @@ public class Tower : MonoBehaviour
         if (nearest == null)
             return;
 
+        // TODO slerp to the enemy, only fire when looking at it
+        Vector3 targetPosition = nearest.transform.position;
+        // Only rotate around the Y axis
+        transform.LookAt(new Vector3(targetPosition.x, transform.position.y, targetPosition.z));
         Attack(nearest); 
     }
 
@@ -82,8 +86,6 @@ public class Tower : MonoBehaviour
 
             Debug.Log($"Attacking {target}");
 
-            // TODO slerp to the enemy, only fire when looking at it
-            transform.LookAt(target.transform);
 
             Projectile instantiated = Instantiate(projectile, projectileOrigin.transform.position, projectile.transform.rotation).GetComponent<Projectile>();
             instantiated.SetTarget(target);
