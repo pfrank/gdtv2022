@@ -11,7 +11,7 @@ public class Path : MonoBehaviour
         {
             // The parent is included this list for some reason, this check
             // ignores it
-            if (waypoint.parent != null)
+            if (waypoint.name.Contains("Waypoint"))
                 waypoints.Add(waypoint);
         }
     }

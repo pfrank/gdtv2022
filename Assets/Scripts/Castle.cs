@@ -13,7 +13,7 @@ public class Castle : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log($"{transform.name} took {damage} damaage ({health} health remaining.");
+        Debug.Log($"{transform.name} took {damage} damage ({health} health remaining.");
 
         if (health <= 0)
         {

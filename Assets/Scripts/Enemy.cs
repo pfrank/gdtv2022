@@ -9,15 +9,18 @@ public class Enemy : MonoBehaviour
 
     private Path path;
     private int currWaypointIndex = 0;
-    private Transform castle;
+    private GameObject castle;
 
     private void Start()
     {
         path = GameObject.Find("Path").GetComponent<Path>();
-        castle = GameObject.Find("Castle").transform;
+        castle = GameObject.Find("Castle");
+        if (castle != null)
+        {
+            // The target is our final waypoint
+            path.waypoints.Add(castle.transform);
+        }
 
-        // The target is our final waypoint
-        path.waypoints.Add(castle);
     }
 
     private void Update()
@@ -27,8 +30,12 @@ public class Enemy : MonoBehaviour
 
     private void MoveAlongPath()
     {
+        // There is no castle, do not continue
+        if (castle == null)
+            return;
+
         // Has the target been reached?
-        if (transform.position == castle.position)
+        if (transform.position == castle.transform.position)
         {
             TargetReached();
             return;
@@ -54,7 +61,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log($"{transform.name} took {damage} damaage ({health} health remaining.");
+        Debug.Log($"{transform.name} took {damage} damage ({health} health remaining.");
 
         if (health <= 0)
         {
