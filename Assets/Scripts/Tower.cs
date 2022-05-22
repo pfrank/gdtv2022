@@ -7,9 +7,9 @@ public class Tower : MonoBehaviour
     [SerializeField] int damage = 10;
     [SerializeField] float attackRadius = 10f;
     [SerializeField] float attackDelay = 1f;
-    [SerializeField] GameObject projectile;
-    [SerializeField] Transform projectileOrigin;
 
+
+    private Weapon weapon;
     private float attackWait = 0f;
     private Transform turret;
 
@@ -17,6 +17,7 @@ public class Tower : MonoBehaviour
     void Start()
     {
         turret = transform.Find("Turret");
+        weapon = gameObject.GetComponentInChildren<Weapon>();
     }
 
     // Update is called once per frame
@@ -25,7 +26,8 @@ public class Tower : MonoBehaviour
         AttackNearestEnemyInRange();
     }
 
-    private float DistanceAway(GameObject other) {
+    private float DistanceAway(GameObject other)
+    {
         return Vector3.Distance(transform.position, other.transform.position);
     }
 
@@ -72,7 +74,7 @@ public class Tower : MonoBehaviour
         Vector3 targetPosition = nearest.transform.position;
         // Only rotate around the Y axis
         turret.LookAt(new Vector3(targetPosition.x, turret.transform.position.y, targetPosition.z));
-        Attack(nearest); 
+        Attack(nearest);
     }
 
     void Attack(GameObject target)
@@ -85,10 +87,7 @@ public class Tower : MonoBehaviour
         {
 
             Debug.Log($"Attacking {target}");
-
-
-            Projectile instantiated = Instantiate(projectile, projectileOrigin.transform.position, projectile.transform.rotation).GetComponent<Projectile>();
-            instantiated.SetTarget(target);
+            weapon.Attack(target);
             attackWait = attackDelay;
         }
     }
