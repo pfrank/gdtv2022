@@ -7,6 +7,7 @@ public class Tower : MonoBehaviour
     [SerializeField] int damage = 10;
     [SerializeField] float attackRadius = 10f;
     [SerializeField] float attackDelay = 1f;
+    [SerializeField] float targetingSpeed = 1f;
 
 
     private Weapon weapon;
@@ -63,6 +64,23 @@ public class Tower : MonoBehaviour
         return nearest;
     }
 
+
+    void LookAtTarget(GameObject target)
+    {
+        Vector3 targetDirection = target.transform.position - turret.transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(
+            turret.transform.forward,
+            targetDirection,
+            targetingSpeed * Time.deltaTime,
+            0.0f
+        );
+        Quaternion lookAtRotation = Quaternion.LookRotation(newDirection);
+
+        lookAtRotation = Quaternion.Euler(turret.transform.rotation.x, lookAtRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+        turret.transform.rotation = lookAtRotation;
+    }
+
     void AttackNearestEnemyInRange()
     {
         GameObject nearest = GetNearestEnemy();
@@ -70,10 +88,8 @@ public class Tower : MonoBehaviour
         if (nearest == null)
             return;
 
-        // TODO slerp to the enemy, only fire when looking at it
-        Vector3 targetPosition = nearest.transform.position;
-        // Only rotate around the Y axis
-        turret.LookAt(new Vector3(targetPosition.x, turret.transform.position.y, targetPosition.z));
+
+        LookAtTarget(nearest);
         Attack(nearest);
     }
 
@@ -85,7 +101,6 @@ public class Tower : MonoBehaviour
         }
         else
         {
-
             Debug.Log($"Attacking {target}");
             weapon.Attack(target);
             attackWait = attackDelay;
