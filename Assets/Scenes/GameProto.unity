@@ -128,6 +128,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4945271186256517321, guid: 0ff2f2b7dc4d52e459def205a846a172, type: 3}
   m_PrefabInstance: {fileID: 1895741496}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &98563580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4382401589767233266, guid: 386cbed56ee874448823a870fabb3cdc, type: 3}
+  m_PrefabInstance: {fileID: 2141736932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &98563584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98563580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ad1c44bf60b7f468e933956fe311dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  distance: 100
 --- !u!1001 &119351014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1658,6 +1677,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProjectileTower
       objectReference: {fileID: 0}
+    - target: {fileID: 4382401589767233266, guid: d5e01659aaf5f2242bc67a2447e1b66b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e01659aaf5f2242bc67a2447e1b66b, type: 3}
 --- !u!1001 &1694136810
@@ -2063,7 +2086,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserTower
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5799334838891801398, guid: 386cbed56ee874448823a870fabb3cdc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 386cbed56ee874448823a870fabb3cdc, type: 3}
 --- !u!1001 &5769966495518981604
 PrefabInstance:
