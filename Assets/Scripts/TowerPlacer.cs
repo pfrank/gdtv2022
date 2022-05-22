@@ -11,7 +11,6 @@ public class TowerPlacer : MonoBehaviour
     private GameObject objectToPlace;
     private Transform indicator;
 
-    private int placeableMask;
     private Renderer renderer;
 
     private bool canPlace = false;
@@ -22,7 +21,6 @@ public class TowerPlacer : MonoBehaviour
     void Start()
     {
         showGizmos = true;
-        placeableMask = LayerMask.NameToLayer("Placeable");
         objectToPlace = Instantiate(prefab, transform);
         indicator = transform.Find("Indicator");
         renderer = indicator.GetComponent<Renderer>();
@@ -53,11 +51,16 @@ public class TowerPlacer : MonoBehaviour
 
         placePosition = new Vector3();
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(
+                ray,
+                out hitInfo,
+                Mathf.Infinity,
+                LayerMask.GetMask("Placeable")
+            )
+        )
         {
             placePosition = hitInfo.point;
-            if (hitInfo.collider.gameObject.name == "Ground")
-                return true;
+            return true;
     }
 
         return false;
@@ -65,14 +68,12 @@ public class TowerPlacer : MonoBehaviour
 
     bool CanPlaceAtPosition(Vector3 position)
     {
-
         Collider[] hitColliders = Physics.OverlapBox(
             position,
-            indicator.transform.localScale,
-            Quaternion.identity
+            indicator.transform.localScale/2,
+            Quaternion.identity,
+            LayerMask.GetMask("Obstacle")
         );
-        if (hitColliders.Length > 0)
-            Debug.Log("BLOCKED");
         return hitColliders.Length == 0;
     }
 

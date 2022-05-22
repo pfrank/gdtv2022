@@ -6,7 +6,6 @@ public class Enemy : MonoBehaviour, IPausable
     [SerializeField] int damage = 10;
     [SerializeField] float speed = 10f;
 
-    [SerializeField]
     private GameObject target;
     private Path path;
     private int currWaypointIndex = 0;

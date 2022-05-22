@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 22640254}
   - component: {fileID: 22640253}
   - component: {fileID: 22640252}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,8 +363,16 @@ PrefabInstance:
       value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 4382401589767233266, guid: d5e01659aaf5f2242bc67a2447e1b66b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382401589767233266, guid: d5e01659aaf5f2242bc67a2447e1b66b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423545882766144883, guid: d5e01659aaf5f2242bc67a2447e1b66b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e01659aaf5f2242bc67a2447e1b66b, type: 3}
@@ -669,6 +677,10 @@ PrefabInstance:
     - target: {fileID: 2023420558838809375, guid: 0ff2f2b7dc4d52e459def205a846a172, type: 3}
       propertyPath: m_Name
       value: Wall Long
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023420558838809375, guid: 0ff2f2b7dc4d52e459def205a846a172, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4945271186256517321, guid: 0ff2f2b7dc4d52e459def205a846a172, type: 3}
       propertyPath: m_RootOrder
