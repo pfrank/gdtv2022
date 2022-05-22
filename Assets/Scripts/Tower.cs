@@ -9,14 +9,15 @@ public class Tower : MonoBehaviour
     [SerializeField] float attackDelay = 1f;
     [SerializeField] float targetingSpeed = 1f;
 
-
     private Weapon weapon;
     private float attackWait = 0f;
     private Transform turret;
+    private GameObject spawnPoint;
 
     // Start is called before the first frame update
     void Start()
     {
+        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
         turret = transform.Find("Turret");
         weapon = gameObject.GetComponentInChildren<Weapon>();
     }
@@ -86,7 +87,10 @@ public class Tower : MonoBehaviour
         GameObject nearest = GetNearestEnemy();
 
         if (nearest == null)
+        {
+            LookAtTarget(spawnPoint.gameObject);
             return;
+        }
 
 
         LookAtTarget(nearest);
