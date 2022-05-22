@@ -11,12 +11,12 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform projectileOrigin;
 
     private float attackWait = 0f;
+    private Transform turret;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-
+        turret = transform.Find("Turret");
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class Tower : MonoBehaviour
         // TODO slerp to the enemy, only fire when looking at it
         Vector3 targetPosition = nearest.transform.position;
         // Only rotate around the Y axis
-        transform.LookAt(new Vector3(targetPosition.x, transform.position.y, targetPosition.z));
+        turret.LookAt(new Vector3(targetPosition.x, turret.transform.position.y, targetPosition.z));
         Attack(nearest); 
     }
 

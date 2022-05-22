@@ -6,18 +6,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] int damage = 10;
     [SerializeField] float speed = 10f;
 
+    [SerializeField]
+    private GameObject target;
     private Path path;
     private int currWaypointIndex = 0;
-    private GameObject castle;
 
     private void Start()
     {
         path = GameObject.Find("Path").GetComponent<Path>();
-        castle = GameObject.Find("Castle");
-        if (castle != null)
+        target = GameObject.Find("Tree");
+        if (target != null)
         {
             // The target is our final waypoint
-            path.waypoints.Add(castle.transform);
+            path.waypoints.Add(target.transform);
         }
 
     }
@@ -29,8 +30,8 @@ public class Enemy : MonoBehaviour
 
     private void MoveAlongPath()
     {
-        // There is no castle, do not continue
-        if (castle == null)
+        // There is no target, do not continue
+        if (target == null)
             return;
 
         Vector3 targetPosition = path.waypoints[currWaypointIndex].position;
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
     private void TargetReached()
     {
         Debug.Log("Target Reached!");
-        castle.GetComponent<Castle>().TakeDamage(damage);
+        target.GetComponent<Tree>().TakeDamage(damage);
         Destroy(gameObject);
     }
 }
