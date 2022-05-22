@@ -952,6 +952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserTower
       objectReference: {fileID: 0}
+    - target: {fileID: 5423545882766144883, guid: 386cbed56ee874448823a870fabb3cdc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 386cbed56ee874448823a870fabb3cdc, type: 3}
 --- !u!1001 &884081472
