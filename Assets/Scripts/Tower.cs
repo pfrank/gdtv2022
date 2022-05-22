@@ -13,10 +13,15 @@ public class Tower : MonoBehaviour
     private float attackWait = 0f;
     private Transform turret;
     private GameObject spawnPoint;
+    public bool CanTarget
+    {
+        get; set;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        CanTarget = true;
         spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
         turret = transform.Find("Turret");
         weapon = gameObject.GetComponentInChildren<Weapon>();
@@ -26,6 +31,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         AttackNearestEnemyInRange();
+        //AttackFarthestEnemyInRange();
     }
 
     private float DistanceAway(GameObject other)
@@ -66,21 +72,59 @@ public class Tower : MonoBehaviour
     }
 
 
+    GameObject GetFarthestEnemy()
+    {
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> enemiesInRange = GetEnemiesInRange(enemyList);
+        GameObject nearest = null;
+        foreach (GameObject enemy in enemiesInRange)
+        {
+            if (nearest == null)
+                nearest = enemy;
+            else
+            {
+                if (DistanceAway(enemy) > DistanceAway(nearest))
+                    nearest = enemy;
+            }
+
+        }
+        return nearest;
+    }
+
+
     void LookAtTarget(GameObject target)
     {
-        Vector3 targetDirection = target.transform.position - turret.transform.position;
-        Vector3 newDirection = Vector3.RotateTowards(
-            turret.transform.forward,
-            targetDirection,
-            targetingSpeed * Time.deltaTime,
-            0.0f
-        );
-        Quaternion lookAtRotation = Quaternion.LookRotation(newDirection);
+        if (CanTarget)
+        {
+            Vector3 targetDirection = target.transform.position - turret.transform.position;
+            Vector3 newDirection = Vector3.RotateTowards(
+                turret.transform.forward,
+                targetDirection,
+                targetingSpeed * Time.deltaTime,
+                0.0f
+            );
+            Quaternion lookAtRotation = Quaternion.LookRotation(newDirection);
 
-        lookAtRotation = Quaternion.Euler(turret.transform.rotation.x, lookAtRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            lookAtRotation = Quaternion.Euler(turret.transform.rotation.x, lookAtRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 
-        turret.transform.rotation = lookAtRotation;
+            turret.transform.rotation = lookAtRotation;
+        }
     }
+
+    void AttackFarthestEnemyInRange()
+    {
+        GameObject farthest = GetFarthestEnemy();
+
+        if (farthest == null)
+        {
+            LookAtTarget(spawnPoint.gameObject);
+            return;
+        }
+
+        LookAtTarget(farthest);
+        Attack(farthest);
+    }
+
 
     void AttackNearestEnemyInRange()
     {
@@ -91,7 +135,6 @@ public class Tower : MonoBehaviour
             LookAtTarget(spawnPoint.gameObject);
             return;
         }
-
 
         LookAtTarget(nearest);
         Attack(nearest);

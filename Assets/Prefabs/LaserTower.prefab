@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ad1c44bf60b7f468e933956fe311dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 10
+  damage: 10
+  distance: 100
 --- !u!120 &6062976356513782422
 LineRenderer:
   m_ObjectHideFlags: 0
