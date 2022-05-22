@@ -1,31 +1,85 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager Instance {
-        get;
+    [SerializeField] float timeBetweenWaves = 10f;
+
+    private GameStateMachine gameStateMachine;
+    private static GameManager instance;
+
+    private WaveManager waveManager;
+
+    private int currentWave = 0;
+
+    private bool isPaused = false;
+    private BaseGameState pausedGameState;
+
+    public BaseGameState GameState
+    {
+        get
+        {
+            return (BaseGameState)gameStateMachine.CurrentState;
+        }
     }
-    private GameManager instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
     private void Awake()
     {
         if (instance == null)
-            return;
+            instance = this;
 
-        instance = this;
+        gameStateMachine = GetComponent<GameStateMachine>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Start countdown before the Wave starts
+        // Set the level (i.e. the number and type of enemies in the wave)
+        // Enable the spawnPoint
+        //
+        waveManager = GetComponent<WaveManager>();
+        gameStateMachine.SwitchState(new PreWaveGameState(gameStateMachine, timeBetweenWaves));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            TogglePauseGame();
+        }
+    }
+
+
+    private void TogglePauseGame()
+    {
+        if (isPaused)
+            gameStateMachine.SwitchState(pausedGameState);
+        else
+        {
+            pausedGameState = GameState;
+            gameStateMachine.SwitchState(new PausedGameState(gameStateMachine));
+        }
+
+        isPaused = !isPaused;
+    }
+
+    public void StartWave()
+    {
+        gameStateMachine.SwitchState(new WaveGameState(gameStateMachine, waveManager, currentWave));
+    }
+
+    public void NextWave()
+    {
+        currentWave += 1;
+        StartWave();
     }
 }

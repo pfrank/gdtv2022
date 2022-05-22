@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, IPausable
 {
 
     [SerializeField] int damage = 10;
@@ -13,6 +13,8 @@ public class Tower : MonoBehaviour
     private float attackWait = 0f;
     private Transform turret;
     private GameObject spawnPoint;
+    private bool paused = false;
+
     public bool CanTarget
     {
         get; set;
@@ -30,6 +32,9 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (paused)
+            return;
+
         AttackNearestEnemyInRange();
         //AttackFarthestEnemyInRange();
     }
@@ -152,5 +157,15 @@ public class Tower : MonoBehaviour
             weapon.Attack(target);
             attackWait = attackDelay;
         }
+    }
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Unpause()
+    {
+        paused = false;
     }
 }

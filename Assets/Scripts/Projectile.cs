@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IPausable
 {
     [SerializeField] float speed = 10f;
     [SerializeField] int damage = 10;
@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
 
     private Rigidbody rigidBody;
     private GameObject target;
+    private bool paused = false;
 
     private void Start()
     {
@@ -16,6 +17,9 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        if (paused)
+            return;
+
         lifeTime -= Time.deltaTime;
         if (lifeTime <= 0)
             Destroy(this);
@@ -44,5 +48,15 @@ public class Projectile : MonoBehaviour
             enemy.TakeDamage(damage);
 
         Destroy(gameObject);
+    }
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Unpause()
+    {
+        paused = false;
     }
 }

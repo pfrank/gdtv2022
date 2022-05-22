@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPausable
 {
     [SerializeField] int health = 10;
     [SerializeField] int damage = 10;
@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     private GameObject target;
     private Path path;
     private int currWaypointIndex = 0;
+
+    private bool paused = false;
 
     private void Start()
     {
@@ -25,6 +27,9 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (paused)
+            return;
+
         MoveAlongPath();
     }
 
@@ -78,5 +83,15 @@ public class Enemy : MonoBehaviour
         Debug.Log("Target Reached!");
         target.GetComponent<Tree>().TakeDamage(damage);
         Destroy(gameObject);
+    }
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Unpause()
+    {
+        paused = false;
     }
 }

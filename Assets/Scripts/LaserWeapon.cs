@@ -23,6 +23,9 @@ public class LaserWeapon : Weapon
 
     public override void Attack(GameObject target)
     {
+        if (target == null)
+            return;
+
         tower.CanTarget = false;
         muzzleFlash.enabled = true;
         lineRender.enabled = true;

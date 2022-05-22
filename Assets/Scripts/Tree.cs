@@ -4,12 +4,6 @@ public class Tree : MonoBehaviour
 {
     [SerializeField] int health = 100;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void TakeDamage(int damage)
     {
         health -= damage;

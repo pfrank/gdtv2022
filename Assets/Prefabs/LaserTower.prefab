@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2560877470717565735}
   - component: {fileID: 4530845719565455682}
   - component: {fileID: 6752766243054944108}
-  - component: {fileID: 5799334838891801398}
   - component: {fileID: 6062976356513782422}
   m_Layer: 0
   m_Name: Barrel
@@ -86,20 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5799334838891801398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2107133823707516437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41ad1c44bf60b7f468e933956fe311dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  distance: 100
 --- !u!120 &6062976356513782422
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -470,9 +455,10 @@ GameObject:
   - component: {fileID: 4382401589767233265}
   - component: {fileID: 8119076776902968150}
   - component: {fileID: 5423545882766144883}
+  - component: {fileID: 7789890799586322503}
   m_Layer: 0
   m_Name: LaserTower
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,6 +510,20 @@ MonoBehaviour:
   attackRadius: 10
   attackDelay: 1.25
   targetingSpeed: 5
+--- !u!114 &7789890799586322503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382401589767233266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ad1c44bf60b7f468e933956fe311dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  distance: 100
 --- !u!1 &8857083218657802755
 GameObject:
   m_ObjectHideFlags: 0
