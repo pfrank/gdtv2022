@@ -99,7 +99,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthOffset: 0.25
+    - _DepthOffset: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -118,7 +118,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Thickness: 0.08
+    - _Thickness: 0.2
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

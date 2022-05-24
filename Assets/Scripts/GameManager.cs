@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     private WaveManager waveManager;
+    private UIManager uiManager;
 
     private int currentWave = 0;
 
     private bool isPaused = false;
     private BaseGameState pausedGameState;
+
 
     public BaseGameState GameState
     {
@@ -28,6 +30,14 @@ public class GameManager : MonoBehaviour
         get
         {
             return instance;
+        }
+    }
+
+    public UIManager UiManager
+    {
+        get
+        {
+            return uiManager;
         }
     }
 
@@ -47,6 +57,7 @@ public class GameManager : MonoBehaviour
         // Enable the spawnPoint
         //
         waveManager = GetComponent<WaveManager>();
+        uiManager = GetComponent<UIManager>();
         gameStateMachine.SwitchState(new PreWaveGameState(gameStateMachine, timeBetweenWaves));
     }
 
@@ -74,6 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void StartWave()
     {
+        uiManager.SetWaveNumber(currentWave);
         gameStateMachine.SwitchState(new WaveGameState(gameStateMachine, waveManager, currentWave));
     }
 

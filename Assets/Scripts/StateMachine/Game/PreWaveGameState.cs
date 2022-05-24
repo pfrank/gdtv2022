@@ -14,14 +14,13 @@ public class PreWaveGameState : BaseGameState
     public override void Enter()
     {
         // Set the countdown
-        Debug.Log("PreWave State ENTERED");
+        GameManager.Instance.UiManager.ShowCountdownPanel();
     }
 
     public override void Tick()
     {
         timeRemaining -= Time.deltaTime;
-        // adjust the countdown UI element
-        Debug.Log($"Wave Starts in {System.Math.Round(timeRemaining, 0)}");
+        GameManager.Instance.UiManager.SetCountdownSeconds((int)timeRemaining);
         if (timeRemaining <= 0f)
         {
             GameManager.Instance.NextWave();
@@ -30,6 +29,6 @@ public class PreWaveGameState : BaseGameState
 
     public override void Exit()
     {
-        Debug.Log("PreWave State EXITED");
+        GameManager.Instance.UiManager.HideCountdownPanel();
     }
 }

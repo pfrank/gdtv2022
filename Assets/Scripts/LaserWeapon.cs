@@ -35,7 +35,7 @@ public class LaserWeapon : Weapon
         RaycastHit[] hits;
         Vector3 rayOrigin = new Vector3(laserOrigin.position.x, laserOrigin.position.y / 2, laserOrigin.position.z);
         Vector3 direction = target.transform.position - rayOrigin;
-        Debug.DrawRay(rayOrigin, direction, Color.green, 1f);
+        Debug.DrawRay(rayOrigin, direction, Color.green, 5f);
         hits = Physics.RaycastAll(rayOrigin, direction, distance);
 
         foreach (RaycastHit hit in hits)

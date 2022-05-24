@@ -35,7 +35,8 @@ public class Tower : MonoBehaviour, IPausable
         if (paused)
             return;
 
-        AttackNearestEnemyInRange();
+        if (CanTarget)
+            AttackNearestEnemyInRange();
         //AttackFarthestEnemyInRange();
     }
 
@@ -99,21 +100,32 @@ public class Tower : MonoBehaviour, IPausable
 
     void LookAtTarget(GameObject target)
     {
-        if (CanTarget)
-        {
-            Vector3 targetDirection = target.transform.position - turret.transform.position;
-            Vector3 newDirection = Vector3.RotateTowards(
-                turret.transform.forward,
-                targetDirection,
-                targetingSpeed * Time.deltaTime,
-                0.0f
-            );
-            Quaternion lookAtRotation = Quaternion.LookRotation(newDirection);
+        if (target == null)
+            return;
 
-            lookAtRotation = Quaternion.Euler(turret.transform.rotation.x, lookAtRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        Vector3 targetDir = target.transform.position - turret.transform.position;
+        Vector3 newDirection = Vector3.RotateTowards(
+            turret.transform.forward,
+            targetDir,
+            targetingSpeed * Time.deltaTime,
+            0.0f
+        );
+        Quaternion lookAtRotation = Quaternion.LookRotation(newDirection);
 
-            turret.transform.rotation = lookAtRotation;
-        }
+        lookAtRotation = Quaternion.Euler(turret.transform.rotation.x, lookAtRotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
+        turret.transform.rotation = lookAtRotation;
+    }
+
+    bool Targeted(GameObject target)
+    {
+        if (target == null)
+            return false;
+
+        Vector3 targetDir = target.transform.position - turret.transform.position;
+        float angleBetween = Vector3.Angle(new Vector3(targetDir.x, 0, targetDir.z), turret.transform.forward);
+
+        return angleBetween < 5f;
     }
 
     void AttackFarthestEnemyInRange()
@@ -135,14 +147,9 @@ public class Tower : MonoBehaviour, IPausable
     {
         GameObject nearest = GetNearestEnemy();
 
-        if (nearest == null)
-        {
-            LookAtTarget(spawnPoint.gameObject);
-            return;
-        }
-
         LookAtTarget(nearest);
-        Attack(nearest);
+        if (Targeted(nearest))
+            Attack(nearest);
     }
 
     void Attack(GameObject target)
