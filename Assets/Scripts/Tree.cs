@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class Tree : MonoBehaviour
 {
-    [SerializeField] int health = 100;
+    [SerializeField] int startingHealth = 100;
+    int currentHealth;
 
+    private void Start()
+    {
+        currentHealth = startingHealth;
+    }
     public void TakeDamage(int damage)
     {
-        health -= damage;
-        Debug.Log($"{transform.name} took {damage} damage ({health} health remaining.");
+        currentHealth -= damage;
+        GameManager.Instance.UiManager.SetTreeHealth(currentHealth, startingHealth);
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
