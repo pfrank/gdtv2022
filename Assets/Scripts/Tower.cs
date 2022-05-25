@@ -4,6 +4,8 @@ using UnityEngine;
 public class Tower : MonoBehaviour, IPausable
 {
 
+    [SerializeField] string displayName = "Tower";
+    [SerializeField] int cost = 100;
     [SerializeField] int damage = 10;
     [SerializeField] float attackRadius = 10f;
     [SerializeField] float attackDelay = 1f;
@@ -15,6 +17,20 @@ public class Tower : MonoBehaviour, IPausable
     private GameObject spawnPoint;
     private bool paused = false;
 
+    public int Cost
+    {
+        get
+        {
+            return cost;
+        }
+    }
+    public string DisplayName
+    {
+        get
+        {
+            return displayName;
+        }
+    }
     public bool CanTarget
     {
         get; set;

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: cc0f4f4bb19659e45a094759b090fb06
+guid: 329a3a4aa934b3541ad164fe8236434f
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GD.TV Enemy #2 Color
-    second: {fileID: 2100000, guid: 37e9bb955f4fca441a44fdaeaf6c8dba, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -37,7 +32,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1

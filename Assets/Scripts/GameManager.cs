@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] float timeBetweenWaves = 10f;
+    [SerializeField] private float timeBetweenWaves = 10f;
+    [SerializeField] private int startingGold = 1000;
+    private int currentGold;
 
     private GameStateMachine gameStateMachine;
+    private PlayerStateMachine playerStateMachine;
     private static GameManager instance;
 
     private WaveManager waveManager;
@@ -13,9 +16,7 @@ public class GameManager : MonoBehaviour
 
     private int currentWave = 0;
 
-    private bool isPaused = false;
     private BaseGameState pausedGameState;
-
 
     public BaseGameState GameState
     {
@@ -47,40 +48,44 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         gameStateMachine = GetComponent<GameStateMachine>();
+        playerStateMachine = GetComponent<PlayerStateMachine>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Start countdown before the Wave starts
-        // Set the level (i.e. the number and type of enemies in the wave)
-        // Enable the spawnPoint
-        //
+        currentGold = startingGold;
         waveManager = GetComponent<WaveManager>();
         uiManager = GetComponent<UIManager>();
+
+        uiManager.SetGold(currentGold);
+
         gameStateMachine.SwitchState(new PreWaveGameState(gameStateMachine, timeBetweenWaves));
+        playerStateMachine.SwitchState(new IdlePlayerState(playerStateMachine));
     }
 
     void Update()
     {
+        // Cancel will cancel the players actions unless they are in the idle
+        // state, in which case, it will toggle pausing
         if (Input.GetButtonDown("Cancel"))
         {
-            TogglePauseGame();
+            if (playerStateMachine.CurrentState is not IdlePlayerState)
+                playerStateMachine.SwitchState(new IdlePlayerState(playerStateMachine));
+            else
+                TogglePauseGame();
         }
     }
 
 
     private void TogglePauseGame()
     {
-        if (isPaused)
+        if (gameStateMachine.CurrentState is PausedGameState)
             gameStateMachine.SwitchState(pausedGameState);
         else
         {
             pausedGameState = GameState;
             gameStateMachine.SwitchState(new PausedGameState(gameStateMachine));
         }
-
-        isPaused = !isPaused;
     }
 
     public void StartWave()
@@ -93,5 +98,23 @@ public class GameManager : MonoBehaviour
     {
         currentWave += 1;
         StartWave();
+    }
+
+    public void DeductGold(int deducted)
+    {
+        currentGold -= deducted;
+        uiManager.SetGold(currentGold);
+    }
+
+    public void AddTower(GameObject towerPrefab)
+    {
+        Tower tower = towerPrefab.GetComponent<Tower>();
+        if (currentGold < tower.Cost)
+            Debug.Log("Not enough gold!");
+        else
+        {
+            GameObject towerObj = Instantiate(towerPrefab, Vector3.zero, Quaternion.identity);
+            playerStateMachine.SwitchState(new AddTowerState(playerStateMachine, towerObj));
+        }
     }
 }

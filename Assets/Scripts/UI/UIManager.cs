@@ -12,6 +12,8 @@ public class UIManager: MonoBehaviour
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private GameObject countdownPanel;
     [SerializeField] private Image treeHealth;
+    [SerializeField] private GameObject towerButtonPanel;
+    [SerializeField] private Button towerButtonPrefab;
 
     private static UIManager instance;
     public static UIManager Instance;
@@ -20,6 +22,19 @@ public class UIManager: MonoBehaviour
     {
         if (instance == null)
             instance = this;
+    }
+
+    private void Start()
+    {
+        TowerManager towerManager = gameObject.GetComponent<TowerManager>();
+        foreach (Tower tower in towerManager.Towers)
+        {
+            var newButton = Instantiate(towerButtonPrefab, towerButtonPanel.transform) as Button;
+            newButton.onClick.AddListener(() => GameManager.Instance.AddTower(tower.gameObject));
+
+            TMP_Text buttonText = newButton.transform.GetComponentInChildren<TMP_Text>();
+            buttonText.text = $"{tower.DisplayName} - {tower.Cost}GP";
+        }
     }
 
     public void SetWaveNumber(int waveNumber)
@@ -66,14 +81,12 @@ public class UIManager: MonoBehaviour
         countdownPanel.SetActive(false);
     }
 
-    public void OnClickParticleTower()
+    public void OnClickUpgradeTower()
     {
-        Debug.Log("NEW PARTICLE TOWER");
-    }
 
-    public void OnClickLaserTower()
-    {
-        Debug.Log("NEW LASER TOWER");
+        Debug.Log("UPGRADE TOWER");
+        // Go into UPGRADE state
+        // On click tower
     }
 
 }
