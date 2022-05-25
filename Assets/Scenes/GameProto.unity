@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 299780377}
   - component: {fileID: 299780376}
   m_Layer: 5
-  m_Name: Attack Radius
+  m_Name: AttackRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,7 +1244,7 @@ GameObject:
   - component: {fileID: 635601665}
   - component: {fileID: 635601664}
   m_Layer: 5
-  m_Name: Attack Speed
+  m_Name: AttackDelay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2611,7 +2611,7 @@ GameObject:
   - component: {fileID: 1327103120}
   - component: {fileID: 1327103119}
   m_Layer: 5
-  m_Name: Type
+  m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3920,6 +3920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenWaves: 10
+  startingGold: 1000
 --- !u!4 &1859819126
 Transform:
   m_ObjectHideFlags: 0
@@ -3983,6 +3984,7 @@ MonoBehaviour:
   treeHealth: {fileID: 30035321}
   towerButtonPanel: {fileID: 1926568971}
   towerButtonPrefab: {fileID: 365401689448294322, guid: 8aaf1501eb377d2489189a464ecad9ec, type: 3}
+  upgradePanel: {fileID: 930505283}
 --- !u!114 &1859819130
 MonoBehaviour:
   m_ObjectHideFlags: 0

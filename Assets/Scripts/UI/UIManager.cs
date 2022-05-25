@@ -14,6 +14,13 @@ public class UIManager: MonoBehaviour
     [SerializeField] private Image treeHealth;
     [SerializeField] private GameObject towerButtonPanel;
     [SerializeField] private Button towerButtonPrefab;
+    [SerializeField] private GameObject upgradePanel;
+
+    private TMP_Text selectedDesc;
+    private TMP_Text selectedLevel;
+    private TMP_Text selectedDamage;
+    private TMP_Text selectedDelay;
+    private TMP_Text selectedRadius;
 
     private static UIManager instance;
     public static UIManager Instance;
@@ -35,6 +42,12 @@ public class UIManager: MonoBehaviour
             TMP_Text buttonText = newButton.transform.GetComponentInChildren<TMP_Text>();
             buttonText.text = $"{tower.DisplayName} - {tower.Cost}GP";
         }
+
+        selectedDesc = upgradePanel.transform.Find("Description").GetComponent<TMP_Text>();
+        selectedLevel = upgradePanel.transform.Find("Level").GetComponent<TMP_Text>();
+        selectedDamage = upgradePanel.transform.Find("Damage").GetComponent<TMP_Text>();
+        selectedDelay = upgradePanel.transform.Find("AttackDelay").GetComponent<TMP_Text>();
+        selectedRadius = upgradePanel.transform.Find("AttackRadius").GetComponent<TMP_Text>();
     }
 
     public void SetWaveNumber(int waveNumber)
@@ -89,4 +102,11 @@ public class UIManager: MonoBehaviour
         // On click tower
     }
 
+    public void SetTowerInfo(Tower tower){
+        selectedDesc.text = tower.DisplayName;
+        selectedLevel.text = $"Level: {tower.Level}";
+        selectedDamage.text = $"Damage: {tower.Damage}";
+        selectedDelay.text = $"Attack Delay: {tower.AttackDelay}";
+        selectedRadius.text = $"Attack Radius: {tower.AttackRadius}";
+    }
 }

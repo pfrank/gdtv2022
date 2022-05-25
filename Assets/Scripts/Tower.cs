@@ -10,12 +10,19 @@ public class Tower : MonoBehaviour, IPausable
     [SerializeField] float attackRadius = 10f;
     [SerializeField] float attackDelay = 1f;
     [SerializeField] float targetingSpeed = 1f;
+    [SerializeField] float upgradeCostMultiplier = 2f;
+    [SerializeField] float upgradeBonusMultiplier = 1.1f;
+    
 
     private Weapon weapon;
     private float attackWait = 0f;
     private Transform turret;
     private GameObject spawnPoint;
     private bool paused = false;
+
+    private int damageUpgrades = 0;
+    private int attackDelayUpgrades = 0;
+    private int attackRadiusUpgrades = 0;
 
     public int Cost
     {
@@ -31,6 +38,37 @@ public class Tower : MonoBehaviour, IPausable
             return displayName;
         }
     }
+
+    public int Level
+    {
+        get
+        {
+            return 1;
+        }
+    } 
+    public int Damage
+    {
+        get
+        {
+            return damage;
+        }
+    } 
+
+    public float AttackDelay
+    {
+        get
+        {
+            return attackDelay;
+        }
+    } 
+    public float AttackRadius
+    {
+        get
+        {
+            return attackRadius;
+        }
+    } 
+
     public bool CanTarget
     {
         get; set;
