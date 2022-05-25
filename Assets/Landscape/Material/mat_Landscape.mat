@@ -46,8 +46,10 @@ Material:
     m_Colors:
     - _AmbientColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
     - _MainColorTint: {r: 1, g: 1, b: 1, a: 0}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
     - _SpecularColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0}
+    - _Tiling: {r: 8, g: 8, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2288084893127575828
 MonoBehaviour:
