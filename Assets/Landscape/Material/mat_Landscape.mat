@@ -41,13 +41,13 @@ Material:
     - _Glossiness: 182.25
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RimAmount: 0.4
-    - _RimThreshhold: 0.9
+    - _RimAmount: 0.5
+    - _RimThreshhold: 0.5
     m_Colors:
-    - _AmbientColor: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 0}
-    - _MainColorTint: {r: 1, g: 1, b: 1, a: 0}
+    - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
+    - _MainColorTint: {r: 0.9811321, g: 0.96724814, b: 0.96724814, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _RimColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
+    - _RimColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0}
     - _SpecularColor: {r: 0.09433961, g: 0.09433961, b: 0.09433961, a: 0}
     - _Tiling: {r: 8, g: 8, b: 0, a: 0}
   m_BuildTextureStacks: []
