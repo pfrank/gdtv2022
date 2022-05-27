@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack Speed:'
+  m_text: 'Speed:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2473,7 +2473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Type:'
+  m_text: Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3804,6 +3804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towers:
   - {fileID: 7053446427246961662, guid: 97b96f7541a7eb94a99869dcf72ea816, type: 3}
+  - {fileID: 655563882244218314, guid: 0b84ed89370155a4dbc77db7fa7e4689, type: 3}
 --- !u!1 &1886930340
 GameObject:
   m_ObjectHideFlags: 0
