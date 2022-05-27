@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IPausable
         transform.LookAt(targetPosition);
 
         // Waypoint reached, go to the next waypoint
-        if (transform.position == targetPosition)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             currWaypointIndex++;
             if (currWaypointIndex >= path.waypoints.Count)
