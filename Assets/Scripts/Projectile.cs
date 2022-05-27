@@ -3,12 +3,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour, IPausable
 {
     [SerializeField] float speed = 10f;
-    [SerializeField] int damage = 10;
     [SerializeField] float lifeTime = 5f;
 
+    private Tower firedBy;
     private Rigidbody rigidBody;
     private GameObject target;
     private bool paused = false;
+
 
     private void Start()
     {
@@ -25,6 +26,11 @@ public class Projectile : MonoBehaviour, IPausable
             Destroy(this);
 
         FollowTarget();
+    }
+
+    public void SetFiredBy(Tower tower)
+    {
+        firedBy = tower;
     }
 
     public void SetTarget(GameObject gobj)
@@ -45,9 +51,10 @@ public class Projectile : MonoBehaviour, IPausable
     {
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy != null)
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(firedBy, firedBy.Damage);
 
-        Destroy(gameObject);
+        if (other.tag != "Tower")
+            Destroy(gameObject);
     }
 
     public void Pause()

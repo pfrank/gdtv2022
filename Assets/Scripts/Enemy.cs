@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPausable
 {
+    [SerializeField] string displayName = "Tower";
     [SerializeField] int health = 10;
     [SerializeField] int damage = 10;
     [SerializeField] float speed = 10f;
@@ -11,6 +12,30 @@ public class Enemy : MonoBehaviour, IPausable
     private int currWaypointIndex = 0;
 
     private bool paused = false;
+
+    public string DisplayName
+    {
+        get
+        {
+            return displayName;
+        }
+    }
+
+    public int Damage
+    {
+        get
+        {
+            return damage;
+        }
+    }
+
+    public float Speed
+    {
+        get
+        {
+            return speed;
+        }
+    }
 
     private void Start()
     {
@@ -50,7 +75,7 @@ public class Enemy : MonoBehaviour, IPausable
         transform.LookAt(targetPosition);
 
         // Waypoint reached, go to the next waypoint
-        if (transform.position == targetPosition)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             currWaypointIndex++;
             if (currWaypointIndex >= path.waypoints.Count)
@@ -60,13 +85,14 @@ public class Enemy : MonoBehaviour, IPausable
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(Tower attacker, int damage)
     {
         health -= damage;
         Debug.Log($"{transform.name} took {damage} damage ({health} health remaining.");
 
         if (health <= 0)
         {
+            attacker.Kills += 1;
             Die();
         }
     }
@@ -92,5 +118,11 @@ public class Enemy : MonoBehaviour, IPausable
     public void Unpause()
     {
         paused = false;
+    }
+
+    private void OnDestroy()
+    {
+        if(gameObject == GameManager.Instance.UiManager.Selected)
+            GameManager.Instance.UiManager.ClearInfo();
     }
 }

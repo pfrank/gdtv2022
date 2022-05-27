@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class LaserWeapon : Weapon
 {
-    [SerializeField] int damage = 10;
-    [SerializeField] float distance = 10f;
     private LineRenderer lineRender;
     private Light muzzleFlash;
 
@@ -13,7 +11,7 @@ public class LaserWeapon : Weapon
 
     void Start()
     {
-        laserOrigin = transform.Find("Turret/Barrel/Muzzle");
+        laserOrigin = transform.Find("Head/Muzzle");
         muzzleFlash = gameObject.GetComponentInChildren<Light>();
         muzzleFlash.enabled = false;
         lineRender = GetComponentInChildren<LineRenderer>();
@@ -30,19 +28,19 @@ public class LaserWeapon : Weapon
         muzzleFlash.enabled = true;
         lineRender.enabled = true;
         lineRender.SetPosition(0, laserOrigin.localPosition);
-        lineRender.SetPosition(1, laserOrigin.localPosition + (Vector3.forward * distance));
+        lineRender.SetPosition(1, laserOrigin.localPosition + (Vector3.forward * tower.AttackRange));
 
         RaycastHit[] hits;
         Vector3 rayOrigin = new Vector3(laserOrigin.position.x, laserOrigin.position.y / 2, laserOrigin.position.z);
         Vector3 direction = target.transform.position - rayOrigin;
         Debug.DrawRay(rayOrigin, direction, Color.green, 5f);
-        hits = Physics.RaycastAll(rayOrigin, direction, distance);
+        hits = Physics.RaycastAll(rayOrigin, direction, tower.AttackRange);
 
         foreach (RaycastHit hit in hits)
         {
             Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
             if (enemy != null)
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(tower, tower.Damage);
 
         }
 

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class IdlePlayerState : BasePlayerState
 {
+    private GameObject selectedObject;
+
     public IdlePlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -14,14 +16,13 @@ public class IdlePlayerState : BasePlayerState
         // TODO: Raycast from mouse, check if there is an enemy beneath, show
         // its health bar if so
 
+
         if (Input.GetMouseButton(0))
         {
-            Tower selectedTower = GetTowerUnderCursor();
-            if (selectedTower)
-            {
-                GameManager.Instance.UiManager.SetTowerInfo(selectedTower);
-            }
+            selectedObject = GetObjectUnderCursor();
         }
+
+        GameManager.Instance.UiManager.SetSelectedObjectInfo(selectedObject);
     }
 
     public override void Exit()
@@ -29,7 +30,7 @@ public class IdlePlayerState : BasePlayerState
         Debug.Log("Idle Player State Exited");
     }
 
-    public Tower? GetTowerUnderCursor()
+    public GameObject? GetObjectUnderCursor()
     {
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -42,9 +43,9 @@ public class IdlePlayerState : BasePlayerState
             )
         )
         {
-            if (hitInfo.collider.gameObject.tag == "Tower")
+            if (hitInfo.collider.gameObject.tag == "Tower" || hitInfo.collider.gameObject.tag == "Enemy" || hitInfo.collider.gameObject.tag == "Ground")
             {
-                return hitInfo.collider.gameObject.GetComponent<Tower>();
+                return hitInfo.collider.gameObject;
             }
         }
         return null;
