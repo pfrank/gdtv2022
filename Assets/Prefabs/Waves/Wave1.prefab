@@ -47,8 +47,11 @@ MonoBehaviour:
   enemyList:
   - {fileID: 6854193181076532529, guid: 13ac34fd0b1778a468c8148af19841e3, type: 3}
   - {fileID: 6854193181076532529, guid: 13ac34fd0b1778a468c8148af19841e3, type: 3}
+  - {fileID: 6854193181076532529, guid: 13ac34fd0b1778a468c8148af19841e3, type: 3}
   - {fileID: 2945734827905725551, guid: 8b58fcfc448825247a15f0cd2a683a9c, type: 3}
   - {fileID: 2945734827905725551, guid: 8b58fcfc448825247a15f0cd2a683a9c, type: 3}
   - {fileID: 6854193181076532529, guid: 13ac34fd0b1778a468c8148af19841e3, type: 3}
+  - {fileID: 6854193181076532529, guid: 13ac34fd0b1778a468c8148af19841e3, type: 3}
   - {fileID: 2945734827905725551, guid: 8b58fcfc448825247a15f0cd2a683a9c, type: 3}
-  timeBetweenSpwans: 1
+  - {fileID: 2945734827905725551, guid: 8b58fcfc448825247a15f0cd2a683a9c, type: 3}
+  timeBetweenSpawns: 1
