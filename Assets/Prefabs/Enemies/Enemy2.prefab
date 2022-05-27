@@ -896,6 +896,7 @@ GameObject:
   - component: {fileID: 8940900812011055810}
   - component: {fileID: 3095196968387244216}
   - component: {fileID: 6922542463875130599}
+  - component: {fileID: 3380481342854182579}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -955,9 +956,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2706eadfc8c7bd04aae6e43ab8411c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Enemy 2
   health: 20
   damage: 20
   speed: 7
+--- !u!136 &3380481342854182579
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601775535470407800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 4.46
+  m_Height: 15.12
+  m_Direction: 1
+  m_Center: {x: 0, y: 3.29, z: 0}
 --- !u!1 &8965168177394373186
 GameObject:
   m_ObjectHideFlags: 0

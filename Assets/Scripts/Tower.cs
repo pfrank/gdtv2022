@@ -44,6 +44,7 @@ public class Tower : MonoBehaviour, IPausable
             return cost;
         }
     }
+
     public string DisplayName
     {
         get

@@ -55,4 +55,4 @@ MonoBehaviour:
   - {fileID: 6583321677787045415, guid: 7f9562bb12839cc4c868804b5bc415c6, type: 3}
   - {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
   - {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  timeBetweenSpawns: 2
+  timeBetweenSpawns: 0.5

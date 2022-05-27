@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class IdlePlayerState : BasePlayerState
 {
-    private Tower selectedTower;
+    private GameObject selectedObject;
 
     public IdlePlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -19,10 +19,10 @@ public class IdlePlayerState : BasePlayerState
 
         if (Input.GetMouseButton(0))
         {
-            selectedTower = GetTowerUnderCursor();
+            selectedObject = GetObjectUnderCursor();
         }
 
-        GameManager.Instance.UiManager.SetTowerInfo(selectedTower);
+        GameManager.Instance.UiManager.SetSelectedObjectInfo(selectedObject);
     }
 
     public override void Exit()
@@ -30,7 +30,7 @@ public class IdlePlayerState : BasePlayerState
         Debug.Log("Idle Player State Exited");
     }
 
-    public Tower? GetTowerUnderCursor()
+    public GameObject? GetObjectUnderCursor()
     {
         Vector3 mousePos = Input.mousePosition;
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -43,9 +43,9 @@ public class IdlePlayerState : BasePlayerState
             )
         )
         {
-            if (hitInfo.collider.gameObject.tag == "Tower")
+            if (hitInfo.collider.gameObject.tag == "Tower" || hitInfo.collider.gameObject.tag == "Enemy" || hitInfo.collider.gameObject.tag == "Ground")
             {
-                return hitInfo.collider.gameObject.GetComponent<Tower>();
+                return hitInfo.collider.gameObject;
             }
         }
         return null;

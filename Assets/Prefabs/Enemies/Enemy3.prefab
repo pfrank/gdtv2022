@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 5771213951602803869}
   - component: {fileID: 6313415550725558121}
   - component: {fileID: 6778675459135037226}
+  - component: {fileID: 1792577511174574232}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Enemy
@@ -355,9 +356,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2706eadfc8c7bd04aae6e43ab8411c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Enemy 3
   health: 30
   damage: 30
   speed: 5
+--- !u!135 &1792577511174574232
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6583321677787045415}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.33
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7069398286482596417
 GameObject:
   m_ObjectHideFlags: 0
