@@ -109,8 +109,10 @@ GameObject:
   - component: {fileID: 1723358017776885427}
   - component: {fileID: 1179979942514025232}
   - component: {fileID: 1179979942514025235}
+  - component: {fileID: 8644956473076921196}
+  - component: {fileID: -6783388846543864626}
   m_Layer: 8
-  m_Name: OwlTower
+  m_Name: OwlTower_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,6 +158,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storeInTexcoordChannel: 1
   cospatialVertexDistance: 0.01
+--- !u!114 &8644956473076921196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063009613231014921}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5814b3943cb4f9418e73eaa6777ff23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: Laser Owl
+  cost: 100
+  damage: 10
+  attackRadius: 10
+  attackDelay: 1
+  targetingSpeed: 1
+  upgradeCostMultiplier: 2
+  upgradeBonusMultiplier: 1.1
+--- !u!114 &-6783388846543864626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063009613231014921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d2567cac9cba6429810109b680fcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 652976743065229113, guid: f7597b13706701e43b5413fa72644119, type: 3}
 --- !u!1 &2748850140324543981
 GameObject:
   m_ObjectHideFlags: 0

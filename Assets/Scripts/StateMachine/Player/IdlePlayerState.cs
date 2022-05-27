@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class IdlePlayerState : BasePlayerState
 {
+    private Tower selectedTower;
+
     public IdlePlayerState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
@@ -14,14 +16,13 @@ public class IdlePlayerState : BasePlayerState
         // TODO: Raycast from mouse, check if there is an enemy beneath, show
         // its health bar if so
 
+
         if (Input.GetMouseButton(0))
         {
-            Tower selectedTower = GetTowerUnderCursor();
-            if (selectedTower)
-            {
-                GameManager.Instance.UiManager.SetTowerInfo(selectedTower);
-            }
+            selectedTower = GetTowerUnderCursor();
         }
+
+        GameManager.Instance.UiManager.SetTowerInfo(selectedTower);
     }
 
     public override void Exit()

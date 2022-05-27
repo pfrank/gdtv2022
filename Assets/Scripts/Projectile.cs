@@ -10,6 +10,11 @@ public class Projectile : MonoBehaviour, IPausable
     private GameObject target;
     private bool paused = false;
 
+    public Tower FiredBy
+    {
+        get; set;
+    }
+
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -45,7 +50,7 @@ public class Projectile : MonoBehaviour, IPausable
     {
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy != null)
-            enemy.TakeDamage(damage);
+            enemy.TakeDamage(FiredBy, damage);
 
         Destroy(gameObject);
     }

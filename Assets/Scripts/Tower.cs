@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour, IPausable
     [SerializeField] string displayName = "Tower";
     [SerializeField] int cost = 100;
     [SerializeField] int damage = 10;
-    [SerializeField] float attackRadius = 10f;
+    [SerializeField] float attackRange = 10f;
     [SerializeField] float attackDelay = 1f;
     [SerializeField] float targetingSpeed = 1f;
     [SerializeField] float upgradeCostMultiplier = 2f;
@@ -17,12 +17,25 @@ public class Tower : MonoBehaviour, IPausable
     private Weapon weapon;
     private float attackWait = 0f;
     private Transform turret;
-    private GameObject spawnPoint;
     private bool paused = false;
 
     private int damageUpgrades = 0;
     private int attackDelayUpgrades = 0;
     private int attackRadiusUpgrades = 0;
+
+    public int Kills
+    {
+        get; set;
+    }
+
+    public string AttackSpeed
+    {
+        get
+        {
+            // Return attacks per second
+            return $"{60.0f / (attackDelay * 60.0f)}/sec";
+        }
+    }
 
     public int Cost
     {
@@ -61,11 +74,11 @@ public class Tower : MonoBehaviour, IPausable
             return attackDelay;
         }
     } 
-    public float AttackRadius
+    public float AttackRange
     {
         get
         {
-            return attackRadius;
+            return attackRange;
         }
     } 
 
@@ -78,8 +91,7 @@ public class Tower : MonoBehaviour, IPausable
     void Start()
     {
         CanTarget = true;
-        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
-        turret = transform.Find("Turret");
+        turret = transform.Find("Head");
         weapon = gameObject.GetComponentInChildren<Weapon>();
     }
 
@@ -89,6 +101,7 @@ public class Tower : MonoBehaviour, IPausable
         if (paused)
             return;
 
+        attackWait -= Time.deltaTime;
         if (CanTarget)
             AttackNearestEnemyInRange();
         //AttackFarthestEnemyInRange();
@@ -105,7 +118,7 @@ public class Tower : MonoBehaviour, IPausable
 
         foreach (GameObject enemy in enemyList)
         {
-            if (DistanceAway(enemy) <= attackRadius)
+            if (DistanceAway(enemy) <= attackRange)
                 enemiesInRange.Add(enemy);
         }
 
@@ -187,10 +200,7 @@ public class Tower : MonoBehaviour, IPausable
         GameObject farthest = GetFarthestEnemy();
 
         if (farthest == null)
-        {
-            LookAtTarget(spawnPoint.gameObject);
             return;
-        }
 
         LookAtTarget(farthest);
         Attack(farthest);
@@ -201,6 +211,9 @@ public class Tower : MonoBehaviour, IPausable
     {
         GameObject nearest = GetNearestEnemy();
 
+        if (nearest == null)
+            return;
+
         LookAtTarget(nearest);
         if (Targeted(nearest))
             Attack(nearest);
@@ -208,13 +221,11 @@ public class Tower : MonoBehaviour, IPausable
 
     void Attack(GameObject target)
     {
-        if (attackWait > 0)
+        if (target == null)
+            return;
+
+        if (attackWait <= 0)
         {
-            attackWait -= Time.deltaTime;
-        }
-        else
-        {
-            Debug.Log($"Attacking {target}");
             weapon.Attack(target);
             attackWait = attackDelay;
         }

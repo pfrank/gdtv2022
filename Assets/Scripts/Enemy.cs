@@ -60,13 +60,14 @@ public class Enemy : MonoBehaviour, IPausable
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(Tower attacker, int damage)
     {
         health -= damage;
         Debug.Log($"{transform.name} took {damage} damage ({health} health remaining.");
 
         if (health <= 0)
         {
+            attacker.Kills += 1;
             Die();
         }
     }

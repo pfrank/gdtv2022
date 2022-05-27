@@ -6,8 +6,6 @@ using TMPro;
 public class UIManager: MonoBehaviour
 {
     [SerializeField] private TMP_Text waveNumberText;
-    [SerializeField] private TMP_Text enemyCountText;
-    [SerializeField] private TMP_Text enemyKillCountText;
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private GameObject countdownPanel;
@@ -17,10 +15,11 @@ public class UIManager: MonoBehaviour
     [SerializeField] private GameObject upgradePanel;
 
     private TMP_Text selectedDesc;
+    private TMP_Text selectedKills;
     private TMP_Text selectedLevel;
     private TMP_Text selectedDamage;
-    private TMP_Text selectedDelay;
-    private TMP_Text selectedRadius;
+    private TMP_Text selectedSpeed;
+    private TMP_Text selectedRange;
 
     private static UIManager instance;
     public static UIManager Instance;
@@ -45,24 +44,15 @@ public class UIManager: MonoBehaviour
 
         selectedDesc = upgradePanel.transform.Find("Description").GetComponent<TMP_Text>();
         selectedLevel = upgradePanel.transform.Find("Level").GetComponent<TMP_Text>();
+        selectedKills = upgradePanel.transform.Find("Kills").GetComponent<TMP_Text>();
         selectedDamage = upgradePanel.transform.Find("Damage").GetComponent<TMP_Text>();
-        selectedDelay = upgradePanel.transform.Find("AttackDelay").GetComponent<TMP_Text>();
-        selectedRadius = upgradePanel.transform.Find("AttackRadius").GetComponent<TMP_Text>();
+        selectedSpeed = upgradePanel.transform.Find("AttackSpeed").GetComponent<TMP_Text>();
+        selectedRange = upgradePanel.transform.Find("Range").GetComponent<TMP_Text>();
     }
 
     public void SetWaveNumber(int waveNumber)
     {
         waveNumberText.text = $"Wave: {waveNumber:N0}";
-    }
-
-    public void SetEnemyCount(int enemyCount)
-    {
-        enemyCountText.text = $"Enemies: {enemyCount:N0}";
-    }
-
-    public void SetEnemyKillCount(int enemyCount)
-    {
-        enemyKillCountText.text = $"Enemies Stopped: {enemyCount:N0}";
     }
 
     public void SetTreeHealth(int currentHealth, int totalHealth)
@@ -103,10 +93,21 @@ public class UIManager: MonoBehaviour
     }
 
     public void SetTowerInfo(Tower tower){
-        selectedDesc.text = tower.DisplayName;
-        selectedLevel.text = $"Level: {tower.Level}";
-        selectedDamage.text = $"Damage: {tower.Damage}";
-        selectedDelay.text = $"Attack Delay: {tower.AttackDelay}";
-        selectedRadius.text = $"Attack Radius: {tower.AttackRadius}";
+        selectedDesc.text = "";
+        selectedKills.text = $"Kills: ";
+        selectedLevel.text = $"Level: ";
+        selectedDamage.text = $"Damage: ";
+        selectedSpeed.text = $"Speed: ";
+        selectedRange.text = $"Range: ";
+
+        if (tower)
+        {
+            selectedDesc.text = tower.DisplayName;
+            selectedKills.text += tower.Kills;
+            selectedLevel.text += tower.Level;
+            selectedDamage.text += tower.Damage;
+            selectedSpeed.text += tower.AttackSpeed;
+            selectedRange.text += tower.AttackRange;
+        }
     }
 }
