@@ -1,3 +1,4 @@
+#pragma warning (disable : 3571) 
 #ifndef CUSTOM_LIGHTING_INCLUDED
 #define CUSTOM_LIGHTING_INCLUDED
 
