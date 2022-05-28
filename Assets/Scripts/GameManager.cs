@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
     public void EnemyDestroyed(GameObject enemy)
     {
         waveManager.EnemyDestroyed(enemy);
+        AddGold(enemy.GetComponent<Enemy>().Gold);
         if (waveManager.EnemyCount == 0)
             NextWave();
     }

@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour, IPausable
     [SerializeField] int health = 10;
     [SerializeField] int damage = 10;
     [SerializeField] float speed = 10f;
+    [SerializeField] int gold = 20;
 
     private GameObject target;
     private Path path;
@@ -34,6 +35,14 @@ public class Enemy : MonoBehaviour, IPausable
         get
         {
             return speed;
+        }
+    }
+
+    public int Gold
+    {
+        get
+        {
+            return gold;
         }
     }
 
