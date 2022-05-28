@@ -22,18 +22,16 @@ public class WaveGameState : BaseGameState
     public override void Enter()
     {
         Debug.Log("Wave State ENTERED");
+        SpawnNextEnemy();
     }
     public override void Tick()
     {
-        if (enemyNumber < wave.EnemyList.Count)
+        if (enemyNumber < wave.EnemyList.Length)
         {
             spawnWait -= Time.deltaTime;
             if (spawnWait <= 0f)
             {
-                spawnWait = wave.TimeBetweenSpawns;
-                GameObject enemy = wave.EnemyList[enemyNumber];
-                waveManager.SpawnEnemy(enemy);
-                enemyNumber++;
+                SpawnNextEnemy();
             }
         }
     }
@@ -41,5 +39,14 @@ public class WaveGameState : BaseGameState
     public override void Exit()
     {
         Debug.Log("Wave State EXITED");
+    }
+
+    private void SpawnNextEnemy()
+    {
+        EnemySpawn enemySpawn = wave.EnemyList[enemyNumber];
+        GameObject enemy = enemySpawn.EnemyPrefab;
+        waveManager.SpawnEnemy(enemy);
+        enemyNumber++;
+        spawnWait = enemySpawn.SpawnTime;
     }
 }

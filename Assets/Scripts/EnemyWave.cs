@@ -2,19 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWave : MonoBehaviour
+[System.Serializable]
+public class EnemySpawn
 {
-    [SerializeField] List<GameObject> enemyList;
-    [SerializeField] float timeBetweenSpawns = 1f;
+    [SerializeField] float spawnTime;
+    [SerializeField] GameObject enemyPrefab;
 
-    public float TimeBetweenSpawns
+    public float SpawnTime
     {
-        get {
-            return timeBetweenSpawns;
+        get
+        {
+            return spawnTime;
         }
     }
 
-    public List<GameObject> EnemyList
+    public GameObject EnemyPrefab
+    {
+        get
+        {
+            return enemyPrefab;
+        }
+    }
+}
+
+public class EnemyWave : MonoBehaviour
+{
+    [SerializeField] EnemySpawn[] enemyList;
+
+
+    public EnemySpawn[] EnemyList
     {
         get
         {
