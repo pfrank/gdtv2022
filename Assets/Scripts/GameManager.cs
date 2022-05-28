@@ -59,8 +59,8 @@ public class GameManager : MonoBehaviour
 
         uiManager.SetGold(currentGold);
 
-        gameStateMachine.SwitchState(new PreWaveGameState(gameStateMachine, timeBetweenWaves));
         playerStateMachine.SwitchState(new IdlePlayerState(playerStateMachine));
+        NextWave();
     }
 
     void Update()
@@ -97,7 +97,16 @@ public class GameManager : MonoBehaviour
     public void NextWave()
     {
         currentWave += 1;
-        StartWave();
+        if (currentWave > waveManager.Waves.Length)
+            WavesComplete();
+        else
+            gameStateMachine.SwitchState(new PreWaveGameState(gameStateMachine, timeBetweenWaves));
+    }
+
+    public void AddGold(int deducted)
+    {
+        currentGold += deducted;
+        uiManager.SetGold(currentGold);
     }
 
     public void DeductGold(int deducted)
@@ -116,5 +125,18 @@ public class GameManager : MonoBehaviour
             GameObject towerObj = Instantiate(towerPrefab, Vector3.zero, Quaternion.identity);
             playerStateMachine.SwitchState(new AddTowerState(playerStateMachine, towerObj));
         }
+    }
+
+    public void EnemyDestroyed(GameObject enemy)
+    {
+        waveManager.EnemyDestroyed(enemy);
+        if (waveManager.EnemyCount == 0)
+            NextWave();
+    }
+
+    public void WavesComplete()
+    {
+        Debug.Log("WAVES COMPLETE!");
+        gameStateMachine.SwitchState(new WavesCompleteState(gameStateMachine));
     }
 }

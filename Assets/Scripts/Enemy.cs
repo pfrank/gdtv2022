@@ -92,22 +92,25 @@ public class Enemy : MonoBehaviour, IPausable
 
         if (health <= 0)
         {
-            attacker.Kills += 1;
-            Die();
+            Killed(attacker);
         }
+    }
+
+    private void Killed(Tower tower)
+    {
+        tower.Kills += 1;
+        Die();
     }
 
     private void Die()
     {
-        Debug.Log("Enemy Destroyed!");
         Destroy(gameObject);
     }
 
     private void TargetReached()
     {
-        Debug.Log("Target Reached!");
         target.GetComponent<Tree>().TakeDamage(damage);
-        Destroy(gameObject);
+        Die();
     }
 
     public void Pause()
@@ -124,5 +127,7 @@ public class Enemy : MonoBehaviour, IPausable
     {
         if(gameObject == GameManager.Instance.UiManager.Selected)
             GameManager.Instance.UiManager.ClearInfo();
+
+        GameManager.Instance.EnemyDestroyed(gameObject);
     }
 }

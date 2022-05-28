@@ -21,7 +21,6 @@ public class WaveGameState : BaseGameState
 
     public override void Enter()
     {
-        SpawnNextEnemy();
     }
     public override void Tick()
     {

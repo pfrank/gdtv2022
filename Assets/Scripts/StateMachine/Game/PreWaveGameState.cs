@@ -23,7 +23,7 @@ public class PreWaveGameState : BaseGameState
         GameManager.Instance.UiManager.SetCountdownSeconds((int)timeRemaining);
         if (timeRemaining <= 0f)
         {
-            GameManager.Instance.NextWave();
+            GameManager.Instance.StartWave();
         }
     }
 

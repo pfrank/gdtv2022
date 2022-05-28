@@ -5,12 +5,26 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
     [SerializeField] GameObject spawnPoint;
-    [SerializeField] List<EnemyWave> waves;
+    [SerializeField] EnemyWave[] waves;
 
-    public List<EnemyWave> Waves { get { return waves; } }
+    List<GameObject> activeEnemies;
+
+    public EnemyWave[] Waves { get { return waves; } }
+    public int EnemyCount { get { return activeEnemies.Count; } }
+
+    private void Awake()
+    {
+        activeEnemies = new List<GameObject>();
+    }
 
     public void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemy, spawnPoint.transform);
+        GameObject obj = Instantiate(enemy, spawnPoint.transform);
+        activeEnemies.Add(obj);
+    }
+
+    public void EnemyDestroyed(GameObject enemy)
+    {
+        activeEnemies.Remove(enemy);
     }
 }
