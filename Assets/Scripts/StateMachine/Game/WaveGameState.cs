@@ -21,7 +21,6 @@ public class WaveGameState : BaseGameState
 
     public override void Enter()
     {
-        Debug.Log("Wave State ENTERED");
         SpawnNextEnemy();
     }
     public override void Tick()
