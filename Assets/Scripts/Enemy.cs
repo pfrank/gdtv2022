@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
     private void Start()
     {
         path = GameObject.Find("Path").GetComponent<Path>();
-        target = GameObject.Find("Tree");
+        target = GameObject.FindGameObjectWithTag("Target");
         selectionIndicator = transform.Find("SelectionIndicator");
         if (target != null)
         {
