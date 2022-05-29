@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AddTowerState : BasePlayerState
 {
@@ -77,6 +78,10 @@ public class AddTowerState : BasePlayerState
 
     bool CanPlaceAtPosition(Vector3 position)
     {
+        // Ignore any clicks on the UI
+        if (EventSystem.current.IsPointerOverGameObject())
+            return false;
+
         Collider[] hitColliders = Physics.OverlapSphere(
             position,
             placementObject.transform.localScale.x * 0.6f,
