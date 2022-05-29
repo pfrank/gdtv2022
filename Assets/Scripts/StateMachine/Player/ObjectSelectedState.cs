@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ObjectSelectedState : BasePlayerState
 {
@@ -28,22 +29,23 @@ public class ObjectSelectedState : BasePlayerState
     {
         if (Input.GetMouseButtonDown(0))
         {
+            // Ignore any clicks on the UI
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             GameObject objUnderCursor = GetObjectUnderCursor();
 
+            GameManager.Instance.UiManager.ClearSelection();
             if (objUnderCursor)
                 stateMachine.SwitchState(new ObjectSelectedState(stateMachine, objUnderCursor));
             else
-            {
-                GameManager.Instance.UiManager.SetSelectedObjectInfo(null);
                 stateMachine.SwitchState(new IdlePlayerState(stateMachine));
-            }
         }
 
     }
 
     public override void Exit()
     {
-        // Turn off the selection indicator
         selectedObject.GetComponent<ISelectable>().Deselect();
     }
 }

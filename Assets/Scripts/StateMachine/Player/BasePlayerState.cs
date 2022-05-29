@@ -22,7 +22,8 @@ public abstract class BasePlayerState : State
             )
         )
         {
-            if (hitInfo.collider.gameObject.GetComponent<ISelectable>() != null)            {
+            if (hitInfo.collider.gameObject.GetComponent<ISelectable>() != null)
+            {
                 return hitInfo.collider.gameObject;
             }
         }
