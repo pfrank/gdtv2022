@@ -129,6 +129,13 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDestroyed(GameObject enemy)
     {
+        // If this enemy is the currently selected one, deselect it
+        if (playerStateMachine.CurrentState is ObjectSelectedState)
+        {
+            ObjectSelectedState curState = (ObjectSelectedState)playerStateMachine.CurrentState;
+            if (curState.SelectedObject == enemy)
+                playerStateMachine.SwitchState(new IdlePlayerState(playerStateMachine));
+        }
         waveManager.EnemyDestroyed(enemy);
         AddGold(enemy.GetComponent<Enemy>().Gold);
         if (waveManager.EnemyCount == 0)

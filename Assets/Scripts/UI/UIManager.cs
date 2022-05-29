@@ -11,27 +11,25 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image treeHealth;
     [SerializeField] private GameObject towerButtonPanel;
     [SerializeField] private Button towerButtonPrefab;
-    [SerializeField] private GameObject upgradePanel;
-    [SerializeField] private GameObject selectionIndicator;
+
+    private GameObject informationPanel;
+    private GameObject towerInfoPanel;
+    private TMP_Text towerLevel;
+    private TMP_Text towerDamage;
+    private TMP_Text towerSpeed;
+    private TMP_Text towerRange;
+    private TMP_Text towerKills;
+    private GameObject enemyInfoPanel;
+    private TMP_Text enemyHealth;
+    private TMP_Text enemyDamage;
+    private TMP_Text enemySpeed;
+
+    private TMP_Text selectedInfo;
 
     private GameObject selected;
-    private TMP_Text selectedDesc;
-    private TMP_Text selectedInfo1;
-    private TMP_Text selectedInfo2;
-    private TMP_Text selectedInfo3;
-    private TMP_Text selectedInfo4;
-    private TMP_Text selectedInfo5;
 
     private static UIManager instance;
     public static UIManager Instance;
-
-    public GameObject Selected
-    {
-        get
-        {
-            return selected;
-        }
-    }
 
     private void Awake()
     {
@@ -51,12 +49,25 @@ public class UIManager : MonoBehaviour
             buttonText.text = $"{tower.DisplayName} - {tower.Cost}GP";
         }
 
-        selectedDesc = upgradePanel.transform.Find("Description").GetComponent<TMP_Text>();
-        selectedInfo1 = upgradePanel.transform.Find("Info1").GetComponent<TMP_Text>();
-        selectedInfo2 = upgradePanel.transform.Find("Info2").GetComponent<TMP_Text>();
-        selectedInfo3 = upgradePanel.transform.Find("Info3").GetComponent<TMP_Text>();
-        selectedInfo4 = upgradePanel.transform.Find("Info4").GetComponent<TMP_Text>();
-        selectedInfo5 = upgradePanel.transform.Find("Info5").GetComponent<TMP_Text>();
+        informationPanel = GameObject.Find("Canvas/InformationPanel");
+        selectedInfo = informationPanel.transform.Find("SelectionInfo").GetComponent<TMP_Text>();
+        towerInfoPanel = informationPanel.transform.Find("TowerInfoPanel").gameObject;
+        towerInfoPanel.SetActive(false);
+        towerLevel = towerInfoPanel.transform.Find("Level").GetComponent<TMP_Text>();
+        towerDamage = towerInfoPanel.transform.Find("Damage").GetComponent<TMP_Text>();
+        towerSpeed = towerInfoPanel.transform.Find("Speed").GetComponent<TMP_Text>();
+        towerRange = towerInfoPanel.transform.Find("Range").GetComponent<TMP_Text>();
+        towerKills = towerInfoPanel.transform.Find("Kills").GetComponent<TMP_Text>();
+        enemyInfoPanel = informationPanel.transform.Find("EnemyInfoPanel").gameObject;
+        enemyInfoPanel.SetActive(false);
+        enemyHealth = enemyInfoPanel.transform.Find("Health").GetComponent<TMP_Text>();
+        enemyDamage = enemyInfoPanel.transform.Find("Damage").GetComponent<TMP_Text>();
+        enemySpeed = enemyInfoPanel.transform.Find("Speed").GetComponent<TMP_Text>();
+    }
+
+    private void Update()
+    {
+
     }
 
     public void SetWaveNumber(int waveNumber)
@@ -103,87 +114,56 @@ public class UIManager : MonoBehaviour
 
     public void SetSelectedObjectInfo(GameObject? gameObject)
     {
-        if (gameObject == null || gameObject.tag == "Ground")
+        if (gameObject)
         {
-            ClearInfo();
-            return;
+            selected = gameObject;
+            Tower tower = gameObject.GetComponent<Tower>();
+            Enemy enemy = gameObject.GetComponent<Enemy>();
+            if (tower)
+                SetTowerInfo(tower);
+            else if (enemy)
+                SetEnemyInfo(enemy);
         }
-
-        selected = gameObject;
-        Tower tower = gameObject.GetComponent<Tower>();
-        Enemy enemy = gameObject.GetComponent<Enemy>();
-        if (tower)
-            SetTowerInfo(tower);
-        else if (enemy)
-            SetEnemyInfo(enemy);
+        else
+            ClearSelection();
     }
 
-    private void SetSelectionIndicator(GameObject gobj)
+    public void UpdateSelectedObjectInfo()
     {
-        if (selectionIndicator == null)
-            return;
-
-        selectionIndicator.transform.SetParent(gobj.transform, false);
-        selectionIndicator.GetComponent<SpriteRenderer>().enabled = true;
-    }
-    private void ClearSelectionIndicator()
-    {
-        if (selectionIndicator == null)
-            return;
-
-        selectionIndicator.transform.SetParent(null, false);
-        selectionIndicator.GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    public void SetEnemyInfo(Enemy enemy)
-    {
-        if (selectionIndicator != null)
-            SetSelectionIndicator(enemy.gameObject);
-
-        selectedDesc.text = "";
-        selectedInfo1.text = $"Damage: ";
-        selectedInfo2.text = $"Speed: ";
-
-        if (enemy)
+        if (selected)
         {
-            selectedDesc.text = enemy.DisplayName;
-            selectedInfo1.text += enemy.Damage;
-            selectedInfo2.text += enemy.Speed;
+            SetSelectedObjectInfo(selected);
         }
+    }
+
+    public void ClearSelection()
+    {
+        selected = null;
+        towerInfoPanel.SetActive(false);
+        enemyInfoPanel.SetActive(false);
+        selectedInfo.text = "";
     }
 
     public void SetTowerInfo(Tower tower)
     {
-        if (selectionIndicator != null)
-            SetSelectionIndicator(tower.gameObject);
+        if (towerInfoPanel.activeInHierarchy == false)
+            towerInfoPanel.SetActive(true);
 
-        selectedDesc.text = "";
-        selectedInfo1.text = $"Kills: ";
-        selectedInfo2.text = $"Level: ";
-        selectedInfo3.text = $"Damage: ";
-        selectedInfo4.text = $"Speed: ";
-        selectedInfo5.text = $"Range: ";
-
-        if (tower)
-        {
-            selectedDesc.text = tower.DisplayName;
-            selectedInfo1.text += tower.Kills;
-            selectedInfo2.text += tower.Level;
-            selectedInfo3.text += tower.Damage;
-            selectedInfo4.text += tower.AttackSpeed;
-            selectedInfo5.text += tower.AttackRange;
-        }
+        selectedInfo.text = tower.DisplayName;
+        towerLevel.text = $"Level: {tower.Level}";
+        towerDamage.text = $"Damage: {tower.Damage}";
+        towerSpeed.text = $"Speed: {tower.AttackSpeed}";
+        towerRange.text = $"Range: {tower.AttackRange}";
+        towerKills.text = $"Kills: {tower.Kills}";
     }
 
-    public void ClearInfo()
+    public void SetEnemyInfo(Enemy enemy)
     {
-        selected = null;
-        ClearSelectionIndicator();
-        selectedDesc.text = "";
-        selectedInfo1.text = "";
-        selectedInfo2.text = "";
-        selectedInfo3.text = "";
-        selectedInfo4.text = "";
-        selectedInfo5.text = "";
+        if (enemyInfoPanel.activeInHierarchy == false)
+            enemyInfoPanel.SetActive(true);
+
+        enemyHealth.text = $"Health: {enemy.Health}";
+        enemyDamage.text = $"Damage: {enemy.Damage}";
+        enemySpeed.text = $"Speed: {enemy.Speed}";
     }
 }

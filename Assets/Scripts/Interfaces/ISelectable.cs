@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface ISelectable
 {
-    public void Selected();
-    public void Deselected();
+    public void Select();
+    public void Deselect();
 }

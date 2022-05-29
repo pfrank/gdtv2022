@@ -26,7 +26,6 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
     private Transform selectionIndicator;
     private bool selected = false;
 
-
     public int Kills
     {
         get; set;
@@ -247,7 +246,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
         paused = false;
     }
 
-    public void Selected()
+    public void Select()
     {
         // TODO: the constant multiplcation is a hack because scale is not
         // equivalent to radius of the selectionIndicator
@@ -256,7 +255,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
         selected = true;
     }
 
-    public void Deselected()
+    public void Deselect()
     {
         selectionIndicator.GetComponent<SpriteRenderer>().enabled = false;
         selected = false;

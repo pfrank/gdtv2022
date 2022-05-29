@@ -15,13 +15,20 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
     private bool paused = false;
 
     private Transform selectionIndicator;
-    private bool selected = false;
 
     public string DisplayName
     {
         get
         {
             return displayName;
+        }
+    }
+
+    public int Health
+    {
+        get
+        {
+            return health;
         }
     }
 
@@ -101,7 +108,7 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
     public void TakeDamage(Tower attacker, int damage)
     {
         health -= damage;
-        Debug.Log($"{transform.name} took {damage} damage ({health} health remaining.");
+        GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
 
         if (health <= 0)
         {
@@ -117,12 +124,13 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
 
     private void Die()
     {
+        GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
         Destroy(gameObject);
     }
 
     private void TargetReached()
     {
-        target.GetComponent<Tree>().TakeDamage(damage);
+        target.GetComponentInParent<Tree>().TakeDamage(damage);
         Die();
     }
 
@@ -138,21 +146,16 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
 
     private void OnDestroy()
     {
-        if(gameObject == GameManager.Instance.UiManager.Selected)
-            GameManager.Instance.UiManager.ClearInfo();
-
         GameManager.Instance.EnemyDestroyed(gameObject);
     }
 
-    public void Selected()
+    public void Select()
     {
         selectionIndicator.GetComponent<SpriteRenderer>().enabled = true;
-        selected = true;
     }
 
-    public void Deselected()
+    public void Deselect()
     {
         selectionIndicator.GetComponent<SpriteRenderer>().enabled = false;
-        selected = false;
     }
 }

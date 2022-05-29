@@ -4,6 +4,14 @@ public class ObjectSelectedState : BasePlayerState
 {
     GameObject selectedObject;
 
+    public GameObject SelectedObject
+    {
+        get
+        {
+            return selectedObject;
+        }
+    }
+
     public ObjectSelectedState(PlayerStateMachine stateMachine, GameObject selectedObject) : base(stateMachine)
     {
         this.selectedObject = selectedObject;
@@ -13,7 +21,7 @@ public class ObjectSelectedState : BasePlayerState
     public override void Enter()
     {
         // Turn on the selection indicator
-        selectedObject.GetComponent<ISelectable>().Selected();
+        selectedObject.GetComponent<ISelectable>().Select();
     }
 
     public override void Tick()
@@ -36,6 +44,6 @@ public class ObjectSelectedState : BasePlayerState
     public override void Exit()
     {
         // Turn off the selection indicator
-        selectedObject.GetComponent<ISelectable>().Deselected();
+        selectedObject.GetComponent<ISelectable>().Deselect();
     }
 }

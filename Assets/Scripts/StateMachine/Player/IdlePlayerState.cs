@@ -8,7 +8,6 @@ public class IdlePlayerState : BasePlayerState
 
     public override void Enter()
     {
-        Debug.Log("Idle Player State ENTERED");
     }
 
     public override void Tick()
@@ -28,7 +27,6 @@ public class IdlePlayerState : BasePlayerState
 
     public override void Exit()
     {
-        Debug.Log("Idle Player State Exited");
     }
 
 }
