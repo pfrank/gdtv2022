@@ -6,25 +6,48 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
 
     [SerializeField] string displayName = "Tower";
     [SerializeField] int cost = 100;
-    [SerializeField] int damage = 10;
-    [SerializeField] float attackRange = 10f;
-    [SerializeField] float attackDelay = 1f;
+    int damage;
+    float attackDelay;
+    float attackRange;
     [SerializeField] float targetingSpeed = 1f;
-    [SerializeField] float upgradeCostMultiplier = 2f;
-    [SerializeField] float upgradeBonusMultiplier = 1.1f;
-    
+    [SerializeField] Upgrades damageUpgrade;
+    [SerializeField] Upgrades attackDelayUpgrade;
+    [SerializeField] Upgrades rangeUpgrade;
+    private int damageUpgradeLevel = 0;
+    private int attackDelayUpgradeLevel = 0;
+    private int rangeUpgradeLevel = 0;
 
     private Weapon weapon;
     private float attackWait = 0f;
     private Transform turret;
     private bool paused = false;
 
-    private int damageUpgrades = 0;
-    private int attackDelayUpgrades = 0;
-    private int attackRadiusUpgrades = 0;
-
     private Transform selectionIndicator;
     private bool selected = false;
+
+    public bool IsDamageMaxLevel
+    {
+        get
+        {
+            return damageUpgradeLevel >= damageUpgrade.UpgradeList.Length;
+        }
+    }
+
+    public bool IsSpeedMaxLevel
+    {
+        get
+        {
+            return attackDelayUpgradeLevel >= attackDelayUpgrade.UpgradeList.Length;
+        }
+    }
+
+    public bool IsRangeMaxLevel
+    {
+        get
+        {
+            return rangeUpgradeLevel >= rangeUpgrade.UpgradeList.Length;
+        }
+    }
 
     public int Kills
     {
@@ -36,7 +59,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
         get
         {
             // Return attacks per second
-            return $"{60.0f / (attackDelay * 60.0f)}/sec";
+            return $"{60.0f / (attackDelay * 60.0f):.#}/sec";
         }
     }
 
@@ -62,14 +85,14 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
         {
             return 1;
         }
-    } 
+    }
     public int Damage
     {
         get
         {
             return damage;
         }
-    } 
+    }
 
     public float AttackDelay
     {
@@ -77,14 +100,14 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
         {
             return attackDelay;
         }
-    } 
+    }
     public float AttackRange
     {
         get
         {
             return attackRange;
         }
-    } 
+    }
 
     public bool CanTarget
     {
@@ -98,6 +121,9 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
         turret = transform.Find("Head");
         selectionIndicator = transform.Find("SelectionIndicator");
         weapon = gameObject.GetComponentInChildren<Weapon>();
+        UpgradeDamage();
+        UpgradeSpeed();
+        UpgradeRange();
     }
 
     // Update is called once per frame
@@ -259,5 +285,72 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
     {
         selectionIndicator.GetComponent<SpriteRenderer>().enabled = false;
         selected = false;
+    }
+
+    public void UpgradeDamage()
+    {
+        UpgradeEntry upgrade = damageUpgrade.UpgradeList[damageUpgradeLevel];
+        if (upgrade.Cost <= GameManager.Instance.Gold && !IsDamageMaxLevel)
+        {
+            GameManager.Instance.DeductGold(upgrade.Cost);
+            int newValue = (int)upgrade.NewValue;
+            damage = newValue;
+            damageUpgradeLevel += 1;
+            GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
+            if (IsDamageMaxLevel)
+            {
+                GameManager.Instance.UiManager.HideUpgradeButton("Damage");
+            }
+            else
+            {
+                UpgradeEntry nextUpgrade = damageUpgrade.UpgradeList[damageUpgradeLevel];
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Damage", $"+{nextUpgrade.NewValue - newValue} ({nextUpgrade.Cost}GP)");
+            }
+        }
+    }
+
+    public void UpgradeSpeed()
+    {
+        UpgradeEntry upgrade = attackDelayUpgrade.UpgradeList[attackDelayUpgradeLevel];
+        if (upgrade.Cost <= GameManager.Instance.Gold && !IsSpeedMaxLevel)
+        {
+            GameManager.Instance.DeductGold(upgrade.Cost);
+            int newValue = (int)upgrade.NewValue;
+            attackDelay = newValue;
+            attackDelayUpgradeLevel += 1;
+            GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
+            if (IsSpeedMaxLevel)
+            {
+                GameManager.Instance.UiManager.HideUpgradeButton("Speed");
+            }
+            else
+            {
+                UpgradeEntry nextUpgrade = attackDelayUpgrade.UpgradeList[attackDelayUpgradeLevel];
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", $"+{nextUpgrade.NewValue - newValue} ({nextUpgrade.Cost}GP)");
+            }
+        }
+    }
+
+    public void UpgradeRange()
+    {
+        UpgradeEntry upgrade = rangeUpgrade.UpgradeList[rangeUpgradeLevel];
+        if (upgrade.Cost <= GameManager.Instance.Gold && !IsRangeMaxLevel)
+        {
+            GameManager.Instance.DeductGold(upgrade.Cost);
+            int newValue = (int)upgrade.NewValue;
+            attackRange = newValue;
+            selectionIndicator.localScale = Vector3.one * (attackRange * 1.5f);
+            rangeUpgradeLevel += 1;
+            GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
+            if (IsRangeMaxLevel)
+            {
+                GameManager.Instance.UiManager.HideUpgradeButton("Range");
+            }
+            else
+            {
+                UpgradeEntry nextUpgrade = rangeUpgrade.UpgradeList[rangeUpgradeLevel];
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Range", $"+{nextUpgrade.NewValue - newValue} ({nextUpgrade.Cost}GP)");
+            }
+        }
     }
 }

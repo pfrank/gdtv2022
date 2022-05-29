@@ -531,12 +531,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Laser Owl
   cost: 200
-  damage: 40
-  attackRange: 20
-  attackDelay: 2.5
   targetingSpeed: 5
-  upgradeCostMultiplier: 2
-  upgradeBonusMultiplier: 1.1
+  damageUpgrade: {fileID: 2325062551464015049, guid: c32c3758b24d3fb48a0d97dc1d07fcd3, type: 3}
+  attackDelayUpgrade: {fileID: 2325062551464015049, guid: 591f9f81738f4c348a551b9222ece6e7, type: 3}
+  rangeUpgrade: {fileID: 2325062551464015049, guid: 187d5243989a20f47a5e994c3a4b9b65, type: 3}
 --- !u!114 &7053446427246961663
 MonoBehaviour:
   m_ObjectHideFlags: 0

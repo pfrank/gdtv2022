@@ -42,6 +42,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int Gold
+    {
+        get
+        {
+            return currentGold;
+        }
+    }
+
     private void Awake()
     {
         if (instance == null)

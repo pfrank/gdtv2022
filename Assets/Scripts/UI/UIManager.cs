@@ -4,20 +4,23 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text waveNumberText;
-    [SerializeField] private TMP_Text goldText;
-    [SerializeField] private TMP_Text countdownText;
-    [SerializeField] private GameObject countdownPanel;
-    [SerializeField] private Image treeHealth;
-    [SerializeField] private GameObject towerButtonPanel;
+    private TMP_Text waveNumberText;
+    private TMP_Text goldText;
+    private TMP_Text countdownText;
+    private GameObject countdownPanel;
+    private Image treeHealth;
+    private GameObject towerButtonPanel;
     [SerializeField] private Button towerButtonPrefab;
 
     private GameObject informationPanel;
     private GameObject towerInfoPanel;
     private TMP_Text towerLevel;
     private TMP_Text towerDamage;
+    private GameObject upgradeDamageButton;
     private TMP_Text towerSpeed;
+    private GameObject upgradeSpeedButton;
     private TMP_Text towerRange;
+    private GameObject upgradeRangeButton;
     private TMP_Text towerKills;
     private GameObject enemyInfoPanel;
     private TMP_Text enemyHealth;
@@ -26,7 +29,7 @@ public class UIManager : MonoBehaviour
 
     private TMP_Text selectedInfo;
 
-    private GameObject selected;
+    private static GameObject selected;
 
     private static UIManager instance;
     public static UIManager Instance;
@@ -39,6 +42,16 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        GameObject canvas = GameObject.Find("Canvas");
+        countdownPanel = canvas.transform.Find("CountdownPanel").gameObject;
+        countdownText = countdownPanel.GetComponentInChildren<TMP_Text>();
+
+        informationPanel = canvas.transform.Find("InformationPanel").gameObject;
+
+        towerButtonPanel = informationPanel.transform.Find("TowerButtonPanel").gameObject;
+        treeHealth = canvas.transform.Find("TreeHealthPanel/TreeHealth").GetComponent<Image>();
+
+        
         TowerManager towerManager = gameObject.GetComponent<TowerManager>();
         foreach (Tower tower in towerManager.Towers)
         {
@@ -49,25 +62,27 @@ public class UIManager : MonoBehaviour
             buttonText.text = $"{tower.DisplayName} - {tower.Cost}GP";
         }
 
-        informationPanel = GameObject.Find("Canvas/InformationPanel");
+
         selectedInfo = informationPanel.transform.Find("SelectionInfo").GetComponent<TMP_Text>();
+        waveNumberText = informationPanel.transform.Find("WaveNumber").GetComponent<TMP_Text>();
+        goldText = informationPanel.transform.Find("Gold").GetComponent<TMP_Text>();
+
         towerInfoPanel = informationPanel.transform.Find("TowerInfoPanel").gameObject;
         towerInfoPanel.SetActive(false);
         towerLevel = towerInfoPanel.transform.Find("Level").GetComponent<TMP_Text>();
-        towerDamage = towerInfoPanel.transform.Find("Damage").GetComponent<TMP_Text>();
-        towerSpeed = towerInfoPanel.transform.Find("Speed").GetComponent<TMP_Text>();
-        towerRange = towerInfoPanel.transform.Find("Range").GetComponent<TMP_Text>();
+        towerDamage = towerInfoPanel.transform.Find("Damage/DamageText").GetComponent<TMP_Text>();
+        upgradeDamageButton = towerInfoPanel.transform.Find("Damage/UpgradeDamage").gameObject;
+        towerSpeed = towerInfoPanel.transform.Find("Speed/SpeedText").GetComponent<TMP_Text>();
+        upgradeSpeedButton = towerInfoPanel.transform.Find("Speed/UpgradeSpeed").gameObject;
+        towerRange = towerInfoPanel.transform.Find("Range/RangeText").GetComponent<TMP_Text>();
+        upgradeRangeButton = towerInfoPanel.transform.Find("Range/UpgradeRange").gameObject;
+
         towerKills = towerInfoPanel.transform.Find("Kills").GetComponent<TMP_Text>();
         enemyInfoPanel = informationPanel.transform.Find("EnemyInfoPanel").gameObject;
         enemyInfoPanel.SetActive(false);
         enemyHealth = enemyInfoPanel.transform.Find("Health").GetComponent<TMP_Text>();
         enemyDamage = enemyInfoPanel.transform.Find("Damage").GetComponent<TMP_Text>();
         enemySpeed = enemyInfoPanel.transform.Find("Speed").GetComponent<TMP_Text>();
-    }
-
-    private void Update()
-    {
-
     }
 
     public void SetWaveNumber(int waveNumber)
@@ -104,21 +119,31 @@ public class UIManager : MonoBehaviour
         countdownPanel.SetActive(false);
     }
 
-    public void OnClickUpgradeTower()
+    public void OnClickUpgradeDamage()
     {
-
-        Debug.Log("UPGRADE TOWER");
-        // Go into UPGRADE state
-        // On click tower
+        Tower tower = selected.GetComponent<Tower>();
+        tower.UpgradeDamage();
     }
 
-    public void SetSelectedObjectInfo(GameObject? gameObject)
+    public void OnClickUpgradeSpeed()
     {
-        if (gameObject)
+        Tower tower = selected.GetComponent<Tower>();
+        tower.UpgradeSpeed();
+    }
+
+    public void OnClickUpgradeRange()
+    {
+        Tower tower = selected.GetComponent<Tower>();
+        tower.UpgradeRange();
+    }
+
+    public void SetSelectedObjectInfo(GameObject? gobj)
+    {
+        if (gobj)
         {
-            selected = gameObject;
-            Tower tower = gameObject.GetComponent<Tower>();
-            Enemy enemy = gameObject.GetComponent<Enemy>();
+            selected = gobj;
+            Tower tower = gobj.GetComponent<Tower>();
+            Enemy enemy = gobj.GetComponent<Enemy>();
             if (tower)
                 SetTowerInfo(tower);
             else if (enemy)
@@ -155,6 +180,22 @@ public class UIManager : MonoBehaviour
         towerSpeed.text = $"Speed: {tower.AttackSpeed}";
         towerRange.text = $"Range: {tower.AttackRange}";
         towerKills.text = $"Kills: {tower.Kills}";
+
+        if (!tower.IsDamageMaxLevel)
+            ShowUpgradeButton("Damage");
+        else
+            HideUpgradeButton("Damage");
+
+        if (!tower.IsSpeedMaxLevel)
+            ShowUpgradeButton("Speed");
+        else
+            HideUpgradeButton("Speed");
+
+        if (!tower.IsRangeMaxLevel)
+            ShowUpgradeButton("Range");
+        else
+            HideUpgradeButton("Range");
+
     }
 
     public void SetEnemyInfo(Enemy enemy)
@@ -165,5 +206,46 @@ public class UIManager : MonoBehaviour
         enemyHealth.text = $"Health: {enemy.Health}";
         enemyDamage.text = $"Damage: {enemy.Damage}";
         enemySpeed.text = $"Speed: {enemy.Speed}";
+    }
+
+    public void SetUpgradeButtonText(string stat, string newText)
+    {
+        TMP_Text buttonText = null;
+        if (stat == "Damage")
+            buttonText = upgradeDamageButton.GetComponent<TMP_Text>();
+        else if (stat == "Speed")
+            buttonText = upgradeSpeedButton.GetComponent<TMP_Text>();
+        else if (stat == "Range")
+            buttonText = upgradeSpeedButton.GetComponent<TMP_Text>();
+
+        if (buttonText)
+            buttonText.text = newText;
+    }
+    public void ShowUpgradeButton(string stat)
+    {
+        GameObject button = null;
+        if (stat == "Damage")
+            button = upgradeDamageButton;
+        else if (stat == "Speed")
+            button = upgradeSpeedButton;
+        else if (stat == "Range")
+            button = upgradeRangeButton;
+
+        if (button)
+            button.SetActive(true);
+    }
+
+    public void HideUpgradeButton(string stat)
+    {
+        GameObject button = null;
+        if (stat == "Damage")
+            button = upgradeDamageButton;
+        else if (stat == "Speed")
+            button = upgradeSpeedButton;
+        else if (stat == "Range")
+            button = upgradeRangeButton;
+
+        if (button)
+            button.SetActive(false);
     }
 }
