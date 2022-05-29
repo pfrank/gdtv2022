@@ -149,9 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Projectile Owl
   cost: 100
-  damage: 5
-  attackRange: 30
-  attackDelay: 0.5
+  damage: 10
+  attackRange: 20
+  attackDelay: 1
   targetingSpeed: 5
   upgradeCostMultiplier: 2
   upgradeBonusMultiplier: 1.1

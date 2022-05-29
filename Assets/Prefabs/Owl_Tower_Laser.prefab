@@ -530,10 +530,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Laser Owl
-  cost: 100
-  damage: 10
-  attackRange: 30
-  attackDelay: 2
+  cost: 200
+  damage: 40
+  attackRange: 20
+  attackDelay: 2.5
   targetingSpeed: 5
   upgradeCostMultiplier: 2
   upgradeBonusMultiplier: 1.1
