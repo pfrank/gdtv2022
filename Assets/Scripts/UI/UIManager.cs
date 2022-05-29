@@ -212,11 +212,11 @@ public class UIManager : MonoBehaviour
     {
         TMP_Text buttonText = null;
         if (stat == "Damage")
-            buttonText = upgradeDamageButton.GetComponent<TMP_Text>();
+            buttonText = upgradeDamageButton.GetComponentInChildren<TMP_Text>();
         else if (stat == "Speed")
-            buttonText = upgradeSpeedButton.GetComponent<TMP_Text>();
+            buttonText = upgradeSpeedButton.GetComponentInChildren<TMP_Text>();
         else if (stat == "Range")
-            buttonText = upgradeSpeedButton.GetComponent<TMP_Text>();
+            buttonText = upgradeRangeButton.GetComponentInChildren<TMP_Text>();
 
         if (buttonText)
             buttonText.text = newText;

@@ -304,7 +304,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = damageUpgrade.UpgradeList[damageUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Damage", $"+{nextUpgrade.NewValue - newValue} ({nextUpgrade.Cost}GP)");
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Damage", $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)");
             }
         }
     }
@@ -326,7 +326,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = attackDelayUpgrade.UpgradeList[attackDelayUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", $"+{nextUpgrade.NewValue - newValue} ({nextUpgrade.Cost}GP)");
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)");
             }
         }
     }
@@ -349,7 +349,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = rangeUpgrade.UpgradeList[rangeUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Range", $"+{nextUpgrade.NewValue - newValue} ({nextUpgrade.Cost}GP)");
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Range", $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)");
             }
         }
     }
