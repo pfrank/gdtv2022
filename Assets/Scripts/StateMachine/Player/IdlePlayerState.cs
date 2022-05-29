@@ -17,12 +17,13 @@ public class IdlePlayerState : BasePlayerState
         // its health bar if so
 
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             selectedObject = GetObjectUnderCursor();
         }
 
-        GameManager.Instance.UiManager.SetSelectedObjectInfo(selectedObject);
+        if (selectedObject)
+            stateMachine.SwitchState(new ObjectSelectedState(stateMachine, selectedObject));
     }
 
     public override void Exit()
@@ -30,24 +31,4 @@ public class IdlePlayerState : BasePlayerState
         Debug.Log("Idle Player State Exited");
     }
 
-    public GameObject? GetObjectUnderCursor()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        RaycastHit hitInfo;
-        if (Physics.Raycast(
-                ray,
-                out hitInfo,
-                Mathf.Infinity
-            )
-        )
-        {
-            if (hitInfo.collider.gameObject.tag == "Tower" || hitInfo.collider.gameObject.tag == "Enemy" || hitInfo.collider.gameObject.tag == "Ground")
-            {
-                return hitInfo.collider.gameObject;
-            }
-        }
-        return null;
-    }
 }

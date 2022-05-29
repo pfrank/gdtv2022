@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour, IPausable
+public class Tower : MonoBehaviour, IPausable, ISelectable
 {
 
     [SerializeField] string displayName = "Tower";
@@ -22,6 +22,10 @@ public class Tower : MonoBehaviour, IPausable
     private int damageUpgrades = 0;
     private int attackDelayUpgrades = 0;
     private int attackRadiusUpgrades = 0;
+
+    private Transform selectionIndicator;
+    private bool selected = false;
+
 
     public int Kills
     {
@@ -93,6 +97,7 @@ public class Tower : MonoBehaviour, IPausable
     {
         CanTarget = true;
         turret = transform.Find("Head");
+        selectionIndicator = transform.Find("SelectionIndicator");
         weapon = gameObject.GetComponentInChildren<Weapon>();
     }
 
@@ -240,5 +245,20 @@ public class Tower : MonoBehaviour, IPausable
     public void Unpause()
     {
         paused = false;
+    }
+
+    public void Selected()
+    {
+        // TODO: the constant multiplcation is a hack because scale is not
+        // equivalent to radius of the selectionIndicator
+        selectionIndicator.localScale = Vector3.one * (attackRange * 1.5f);
+        selectionIndicator.GetComponent<SpriteRenderer>().enabled = true;
+        selected = true;
+    }
+
+    public void Deselected()
+    {
+        selectionIndicator.GetComponent<SpriteRenderer>().enabled = false;
+        selected = false;
     }
 }

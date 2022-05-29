@@ -941,11 +941,6 @@ Transform:
   m_Father: {fileID: 1457848040}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &828095306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5676441398885575258, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-  m_PrefabInstance: {fileID: 5676441399168258320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &851467152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2370,63 +2365,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe4cdca83890c44bafed4414c2f2149, type: 3}
---- !u!1001 &5676441399168258320
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5676441398885575258, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_Name
-      value: SelectionIndicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5676441398885575260, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c9737a93e96b6cc43a827b6845a7b6e7, type: 3}
 --- !u!1001 &7458440809541068408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2482,6 +2420,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7458440809953741582, guid: 4c49257e5b8638947b10890e27c0e2fc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c49257e5b8638947b10890e27c0e2fc, type: 3}
 --- !u!1001 &8187366740301409626
@@ -2526,7 +2468,7 @@ PrefabInstance:
     - target: {fileID: 8187366738654526243, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: selectionIndicator
       value: 
-      objectReference: {fileID: 828095306}
+      objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526252, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: m_RootOrder
       value: 5

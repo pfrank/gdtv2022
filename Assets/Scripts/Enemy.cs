@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IPausable
+public class Enemy : MonoBehaviour, IPausable, ISelectable
 {
     [SerializeField] string displayName = "Tower";
     [SerializeField] int health = 10;
@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour, IPausable
     private int currWaypointIndex = 0;
 
     private bool paused = false;
+
+    private Transform selectionIndicator;
+    private bool selected = false;
 
     public string DisplayName
     {
@@ -50,6 +53,7 @@ public class Enemy : MonoBehaviour, IPausable
     {
         path = GameObject.Find("Path").GetComponent<Path>();
         target = GameObject.Find("Tree");
+        selectionIndicator = transform.Find("SelectionIndicator");
         if (target != null)
         {
             // The target is our final waypoint
@@ -138,5 +142,17 @@ public class Enemy : MonoBehaviour, IPausable
             GameManager.Instance.UiManager.ClearInfo();
 
         GameManager.Instance.EnemyDestroyed(gameObject);
+    }
+
+    public void Selected()
+    {
+        selectionIndicator.GetComponent<SpriteRenderer>().enabled = true;
+        selected = true;
+    }
+
+    public void Deselected()
+    {
+        selectionIndicator.GetComponent<SpriteRenderer>().enabled = false;
+        selected = false;
     }
 }
