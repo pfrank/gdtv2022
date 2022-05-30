@@ -326,7 +326,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = attackDelayUpgrade.UpgradeList[attackDelayUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)");
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", $"+{nextUpgrade.NewValue - upgrade.NewValue:.#} ({nextUpgrade.Cost}GP)");
             }
         }
     }
