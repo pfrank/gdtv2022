@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string successMessage;
     [SerializeField] private string failureSubject;
     [SerializeField] private string failureMessage;
-    [SerializeField] AudioClip enemyKilled;
+    [SerializeField] AudioClip waveComplete;
 
     private int currentGold;
 
@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
     public void AddGold(int added)
     {
         currentGold += added;
-        gameObject.GetComponent<AudioSource>().PlayOneShot(enemyKilled);
         uiManager.SetGold(currentGold);
     }
 
@@ -153,7 +152,10 @@ public class GameManager : MonoBehaviour
         }
         waveManager.EnemyDestroyed(enemy);
         if (waveManager.EnemyCount == 0)
+        {
             NextWave();
+            gameObject.GetComponent<AudioSource>().PlayOneShot(waveComplete);
+        }
     }
 
     public void GameOver()
