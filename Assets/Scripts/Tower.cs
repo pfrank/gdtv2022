@@ -13,9 +13,9 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
     [SerializeField] Upgrades damageUpgrade;
     [SerializeField] Upgrades attackDelayUpgrade;
     [SerializeField] Upgrades rangeUpgrade;
-    private int damageUpgradeLevel = 0;
-    private int attackDelayUpgradeLevel = 0;
-    private int rangeUpgradeLevel = 0;
+    private int damageUpgradeLevel = 1;
+    private int attackDelayUpgradeLevel = 1;
+    private int rangeUpgradeLevel = 1;
 
     private Weapon weapon;
     private float attackWait = 0f;
