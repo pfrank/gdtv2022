@@ -6,6 +6,7 @@ public class WaveGameState : BaseGameState
 
     private float spawnWait;
     private int enemyNumber = 1;
+    private EnemySpawn nextSpawn;
 
     public WaveGameState(
         GameStateMachine stateMachine,
@@ -21,6 +22,8 @@ public class WaveGameState : BaseGameState
 
     public override void Enter()
     {
+        nextSpawn = wave.EnemyList[enemyNumber];
+        spawnWait = nextSpawn.SpawnTime;
     }
     public override void Tick()
     {
@@ -41,10 +44,13 @@ public class WaveGameState : BaseGameState
 
     private void SpawnNextEnemy()
     {
-        EnemySpawn enemySpawn = wave.EnemyList[enemyNumber];
-        GameObject enemy = enemySpawn.EnemyPrefab;
+        GameObject enemy = nextSpawn.EnemyPrefab;
         waveManager.SpawnEnemy(enemy);
         enemyNumber++;
-        spawnWait = enemySpawn.SpawnTime;
+        if (enemyNumber == wave.EnemyList.Length)
+            return;
+
+        nextSpawn = wave.EnemyList[enemyNumber];
+        spawnWait = nextSpawn.SpawnTime;
     }
 }
