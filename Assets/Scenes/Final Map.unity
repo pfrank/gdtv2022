@@ -9826,7 +9826,7 @@ PrefabInstance:
       objectReference: {fileID: 1470874357}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.size
-      value: 15
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[1]
@@ -9887,23 +9887,23 @@ PrefabInstance:
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[15]
       value: 
-      objectReference: {fileID: 7166965428035546061, guid: 600cd64ec281d544c9a1815e9d985d00, type: 3}
+      objectReference: {fileID: 7166965428035546061, guid: 01bec1bbd7878d1419b495ea1cb4ebb1, type: 3}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[16]
       value: 
-      objectReference: {fileID: 7166965428035546061, guid: 600cd64ec281d544c9a1815e9d985d00, type: 3}
+      objectReference: {fileID: 7166965428035546061, guid: 1e2932fc9a334d846abbaf2836f1b345, type: 3}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[17]
       value: 
-      objectReference: {fileID: 7166965428035546061, guid: 600cd64ec281d544c9a1815e9d985d00, type: 3}
+      objectReference: {fileID: 7166965428035546061, guid: e1eba00010cdf2748b53b51054d8d7c3, type: 3}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[18]
       value: 
-      objectReference: {fileID: 7166965428035546061, guid: 481e21c6cdc513442b2d7dee946af2dc, type: 3}
+      objectReference: {fileID: 7166965428035546061, guid: 178af70d8a718cb43af3188b4a727eb9, type: 3}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[19]
       value: 
-      objectReference: {fileID: 7166965428035546061, guid: 57dc096ee41ac3545ae4640fd7fd3b16, type: 3}
+      objectReference: {fileID: 7166965428035546061, guid: 178af70d8a718cb43af3188b4a727eb9, type: 3}
     - target: {fileID: 8187366738654526242, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: waves.Array.data[20]
       value: 
@@ -10030,11 +10030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526255, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: currentWave
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526255, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: startingGold
-      value: 3600
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526255, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: timeBetweenWaves
