@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2706eadfc8c7bd04aae6e43ab8411c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: Fallen Angel
+  displayName: Angel
   health: 800
   damage: 30
   speed: 6

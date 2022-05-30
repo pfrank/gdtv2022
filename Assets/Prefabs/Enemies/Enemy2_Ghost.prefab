@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
       propertyPath: displayName
-      value: Enemy 2 Ghost
+      value: Moai Demon Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
       propertyPath: reincarnatedForm
