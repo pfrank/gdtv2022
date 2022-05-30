@@ -51,11 +51,11 @@ MonoBehaviour:
     newValue: 20
   - cost: 100
     newValue: 28
-  - cost: 150
+  - cost: 175
     newValue: 36
-  - cost: 200
+  - cost: 275
     newValue: 44
-  - cost: 250
+  - cost: 400
     newValue: 52
-  - cost: 300
+  - cost: 550
     newValue: 60
