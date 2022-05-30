@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string successMessage;
     [SerializeField] private string failureSubject;
     [SerializeField] private string failureMessage;
-    [SerializeField] AudioClip waveComplete;
+    [SerializeField] AudioClip waveCompleteSound;
+    AudioSource audioSource;
 
     private int currentGold;
 
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
 
         gameStateMachine = GetComponent<GameStateMachine>();
         playerStateMachine = GetComponent<PlayerStateMachine>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -153,8 +155,9 @@ public class GameManager : MonoBehaviour
         waveManager.EnemyDestroyed(enemy);
         if (waveManager.EnemyCount == 0)
         {
+            if (audioSource && waveCompleteSound)
+                audioSource.PlayOneShot(waveCompleteSound);
             NextWave();
-            gameObject.GetComponent<AudioSource>().PlayOneShot(waveComplete);
         }
     }
 
