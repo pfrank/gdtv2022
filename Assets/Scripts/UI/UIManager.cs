@@ -41,10 +41,7 @@ public class UIManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-    }
 
-    private void Start()
-    {
         GameObject canvas = GameObject.Find("Canvas");
         countdownPanel = canvas.transform.Find("CountdownPanel").gameObject;
         countdownText = countdownPanel.GetComponentInChildren<TMP_Text>();
@@ -91,6 +88,10 @@ public class UIManager : MonoBehaviour
         enemySpeed = enemyInfoPanel.transform.Find("Speed").GetComponent<TMP_Text>();
     }
 
+    private void Start()
+    {
+    }
+
     public void SetWaveNumber(int waveNumber)
     {
         waveNumberText.text = $"Wave: {waveNumber:N0}";
@@ -108,7 +109,8 @@ public class UIManager : MonoBehaviour
 
     public void SetGold(int gold)
     {
-        goldText.text = $"Gold: {gold:N0}";
+        if (goldText)
+            goldText.text = $"Gold: {gold:N0}";
     }
 
     public void SetCountdownSeconds(int seconds)
