@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string successMessage;
     [SerializeField] private string failureSubject;
     [SerializeField] private string failureMessage;
+    [SerializeField] AudioClip enemyKilled;
+
     private int currentGold;
 
     private GameStateMachine gameStateMachine;
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
     public void AddGold(int deducted)
     {
         currentGold += deducted;
+        gameObject.GetComponent<AudioSource>().PlayOneShot(enemyKilled);
         uiManager.SetGold(currentGold);
     }
 
