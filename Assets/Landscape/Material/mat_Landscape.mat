@@ -44,7 +44,7 @@ Material:
     - _RimAmount: 0.5
     - _RimThreshhold: 0.5
     m_Colors:
-    - _AmbientColor: {r: 0, g: 0, b: 0, a: 0}
+    - _AmbientColor: {r: 1, g: 0.07075471, b: 0.9203402, a: 0}
     - _MainColorTint: {r: 0.735849, g: 0.735849, b: 0.735849, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0}

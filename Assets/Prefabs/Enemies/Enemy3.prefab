@@ -358,10 +358,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Enemy 3
-  health: 200
+  health: 800
   damage: 30
   speed: 6
-  gold: 40
+  gold: 30
 --- !u!135 &1792577511174574232
 SphereCollider:
   m_ObjectHideFlags: 0

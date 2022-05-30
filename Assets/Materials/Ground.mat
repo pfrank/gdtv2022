@@ -121,7 +121,7 @@ Material:
     - _Color: {r: 0.3679245, g: 0.241812, b: 0.241812, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _MainColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
+    - _MainColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0}
     - _RimColor: {r: 4, g: 4, b: 4, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}

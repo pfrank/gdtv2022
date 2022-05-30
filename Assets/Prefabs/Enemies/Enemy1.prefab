@@ -427,10 +427,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Enemy 1
-  health: 50
+  health: 100
   damage: 10
   speed: 10
-  gold: 20
+  gold: 15
 --- !u!136 &-6371945409762691095
 CapsuleCollider:
   m_ObjectHideFlags: 0
