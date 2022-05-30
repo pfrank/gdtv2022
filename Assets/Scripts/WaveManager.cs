@@ -17,10 +17,11 @@ public class WaveManager : MonoBehaviour
         activeEnemies = new List<GameObject>();
     }
 
-    public void SpawnEnemy(GameObject enemy)
+    public GameObject SpawnEnemy(GameObject enemy)
     {
         GameObject obj = Instantiate(enemy, spawnPoint.transform);
         activeEnemies.Add(obj);
+        return obj;
     }
 
     public void EnemyDestroyed(GameObject enemy)

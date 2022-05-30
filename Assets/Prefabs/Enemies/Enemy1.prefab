@@ -431,6 +431,7 @@ MonoBehaviour:
   damage: 10
   speed: 10
   gold: 15
+  ghostForm: {fileID: 6450617328329711704, guid: 2bb9d941a9d0fe845bb548743816f7d6, type: 3}
 --- !u!136 &-6371945409762691095
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -11,9 +11,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1b4a20ce093561d488daf2baa67b659a, type: 2}
+    - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+      propertyPath: ghostForm
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+      propertyPath: displayName
+      value: Enemy 2 Ghost
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+      propertyPath: reincarnatedForm
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
       propertyPath: m_Name
-      value: Enemy2
+      value: Enemy2_Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 8940900812011055810, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
       propertyPath: m_RootOrder

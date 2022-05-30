@@ -5,7 +5,7 @@ public class WaveGameState : BaseGameState
     private EnemyWave wave;
 
     private float spawnWait;
-    private int enemyNumber = 0;
+    private int enemyNumber = 1;
 
     public WaveGameState(
         GameStateMachine stateMachine,

@@ -145,7 +145,6 @@ public class GameManager : MonoBehaviour
                 playerStateMachine.SwitchState(new IdlePlayerState(playerStateMachine));
         }
         waveManager.EnemyDestroyed(enemy);
-        AddGold(enemy.GetComponent<Enemy>().Gold);
         if (waveManager.EnemyCount == 0)
             NextWave();
     }
@@ -154,5 +153,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("WAVES COMPLETE!");
         gameStateMachine.SwitchState(new WavesCompleteState(gameStateMachine));
+    }
+
+    public void RespawnGhost(Enemy enemy)
+    {
+        if (enemy.GhostForm == null)
+            return;
+
+        GameObject ghost = waveManager.SpawnEnemy(enemy.GhostForm);
+        ghost.transform.position = enemy.transform.position;
+        ghost.GetComponent<Enemy>().CurrWaypointIndex = enemy.CurrWaypointIndex;
     }
 }

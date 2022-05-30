@@ -112,11 +112,13 @@ public class UIManager : MonoBehaviour
 
     public void ShowCountdownPanel()
     {
-        countdownPanel.SetActive(true);
+        if (countdownPanel)
+            countdownPanel.SetActive(true);
     }
     public void HideCountdownPanel()
     {
-        countdownPanel.SetActive(false);
+        if (countdownPanel)
+            countdownPanel.SetActive(false);
     }
 
     public void OnClickUpgradeDamage()
@@ -158,6 +160,10 @@ public class UIManager : MonoBehaviour
         if (selected)
         {
             SetSelectedObjectInfo(selected);
+        }
+        else
+        {
+            ClearSelection();
         }
     }
 

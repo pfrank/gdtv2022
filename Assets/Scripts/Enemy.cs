@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
     [SerializeField] int damage = 10;
     [SerializeField] float speed = 10f;
     [SerializeField] int gold = 20;
+    [SerializeField] GameObject ghostForm;
 
     private GameObject target;
     private Path path;
@@ -53,6 +54,23 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
         get
         {
             return gold;
+        }
+    }
+
+    public GameObject GhostForm
+    {
+        get
+        {
+            return ghostForm;
+        }
+    }
+
+    public int CurrWaypointIndex
+    {
+        get { return currWaypointIndex; }
+        set
+        {
+            currWaypointIndex = value;
         }
     }
 
@@ -119,12 +137,16 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
     private void Killed(Tower tower)
     {
         tower.Kills += 1;
+        GameManager.Instance.AddGold(gold);
+
         Die();
     }
 
     private void Die()
     {
         GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
+        GameManager.Instance.RespawnGhost(this); 
+
         Destroy(gameObject);
     }
 
