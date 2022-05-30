@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     private GameObject upgradeRangeButton;
     private TMP_Text towerKills;
     private GameObject enemyInfoPanel;
+    private TMP_Text enemyName;
     private TMP_Text enemyHealth;
     private TMP_Text enemyDamage;
     private TMP_Text enemySpeed;
@@ -84,6 +85,7 @@ public class UIManager : MonoBehaviour
         towerKills = towerInfoPanel.transform.Find("Kills").GetComponent<TMP_Text>();
         enemyInfoPanel = informationPanel.transform.Find("EnemyInfoPanel").gameObject;
         enemyInfoPanel.SetActive(false);
+        enemyName = enemyInfoPanel.transform.Find("Name").GetComponent<TMP_Text>();
         enemyHealth = enemyInfoPanel.transform.Find("Health").GetComponent<TMP_Text>();
         enemyDamage = enemyInfoPanel.transform.Find("Damage").GetComponent<TMP_Text>();
         enemySpeed = enemyInfoPanel.transform.Find("Speed").GetComponent<TMP_Text>();
@@ -219,6 +221,7 @@ public class UIManager : MonoBehaviour
         if (enemyInfoPanel.activeInHierarchy == false)
             enemyInfoPanel.SetActive(true);
 
+        enemyName.text = enemy.DisplayName;
         enemyHealth.text = $"Health: {enemy.Health}";
         enemyDamage.text = $"Damage: {enemy.Damage}";
         enemySpeed.text = $"Speed: {enemy.Speed}";
