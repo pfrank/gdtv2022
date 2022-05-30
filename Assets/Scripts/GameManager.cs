@@ -5,6 +5,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private float timeBetweenWaves = 10f;
     [SerializeField] private int startingGold = 1000;
+    [SerializeField] private string successSubject;
+    [SerializeField] private string successMessage;
+    [SerializeField] private string failureSubject;
+    [SerializeField] private string failureMessage;
     private int currentGold;
 
     private GameStateMachine gameStateMachine;
@@ -149,10 +153,20 @@ public class GameManager : MonoBehaviour
             NextWave();
     }
 
+    public void GameOver()
+    {
+        Debug.Log("GAME OVER");
+        gameStateMachine.SwitchState(new PausedGameState(gameStateMachine));
+
+        uiManager.ShowGameOverMessage(failureSubject, failureMessage, currentWave-1);
+    }
+
     public void WavesComplete()
     {
         Debug.Log("WAVES COMPLETE!");
         gameStateMachine.SwitchState(new WavesCompleteState(gameStateMachine));
+
+        uiManager.ShowGameOverMessage(successSubject, successMessage, currentWave-1);
     }
 
     public void RespawnGhost(Enemy enemy)

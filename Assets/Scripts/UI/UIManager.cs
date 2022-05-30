@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
     private TMP_Text enemyDamage;
     private TMP_Text enemySpeed;
 
+    private GameObject gameOverPanel;
+
     private TMP_Text selectedInfo;
 
     private static GameObject selected;
@@ -51,6 +53,8 @@ public class UIManager : MonoBehaviour
         towerButtonPanel = informationPanel.transform.Find("TowerButtonPanel").gameObject;
         treeHealth = canvas.transform.Find("TreeHealthPanel/TreeHealth").GetComponent<Image>();
 
+        gameOverPanel = canvas.transform.Find("GameOverPanel").gameObject;
+        gameOverPanel.SetActive(false);
         
         TowerManager towerManager = gameObject.GetComponent<TowerManager>();
         foreach (Tower tower in towerManager.Towers)
@@ -137,6 +141,12 @@ public class UIManager : MonoBehaviour
     {
         Tower tower = selected.GetComponent<Tower>();
         tower.UpgradeRange();
+    }
+
+    public void OnClickPlayAgain()
+    {
+        GameSceneManager sceneManager = new GameSceneManager();
+        sceneManager.LoadStartScreen();
     }
 
     public void SetSelectedObjectInfo(GameObject? gobj)
@@ -253,5 +263,25 @@ public class UIManager : MonoBehaviour
 
         if (button)
             button.SetActive(false);
+    }
+
+    public void ShowGameOverMessage(string subject, string message, int wavesCompleted)
+    {
+        if (informationPanel)
+            informationPanel.SetActive(false);
+
+        if (gameOverPanel)
+        {
+            gameOverPanel.SetActive(true);
+            gameOverPanel.transform.Find("GameOverSubject").GetComponent<TMP_Text>().text = subject;
+            gameOverPanel.transform.Find("GameOverMessage").GetComponent<TMP_Text>().text = message;
+            gameOverPanel.transform.Find("WavesComplete").GetComponent<TMP_Text>().text = $"{wavesCompleted} Waves of Demons Stopped.";
+        }
+    }
+
+    public void HideGameOverMessage()
+    {
+        gameOverPanel.SetActive(false);
+        informationPanel.SetActive(true);
     }
 }

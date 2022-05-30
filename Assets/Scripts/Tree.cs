@@ -22,7 +22,7 @@ public class Tree : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Tree Destroyed, Game Over!");
+        GameManager.Instance.GameOver();
         Destroy(gameObject);
     }
 }
