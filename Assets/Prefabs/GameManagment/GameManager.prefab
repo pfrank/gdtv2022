@@ -51,12 +51,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenWaves: 1
-  startingGold: 1000
+  startingGold: 750
   successSubject: Congratulations!
   successMessage: The TOwls have stopped the Demons and brought harmony to the forest.
   failureSubject: GAME OVER
   failureMessage: The Demons have defeated the TOwls and destroyed the Tree Of Life.
-  enemyKilled: {fileID: 8300000, guid: 61917f0660f7f4e42b28a577c7a417ab, type: 3}
+  waveCompleteSound: {fileID: 8300000, guid: 61917f0660f7f4e42b28a577c7a417ab, type: 3}
+  currentWave: 0
 --- !u!114 &8187366738654526253
 MonoBehaviour:
   m_ObjectHideFlags: 0

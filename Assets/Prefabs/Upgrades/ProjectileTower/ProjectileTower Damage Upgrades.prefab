@@ -49,13 +49,13 @@ MonoBehaviour:
     newValue: 8
   - cost: 0
     newValue: 10
-  - cost: 50
-    newValue: 14
   - cost: 75
-    newValue: 18
-  - cost: 100
-    newValue: 22
+    newValue: 14
   - cost: 125
+    newValue: 18
+  - cost: 200
+    newValue: 22
+  - cost: 300
     newValue: 26
-  - cost: 150
+  - cost: 450
     newValue: 30
