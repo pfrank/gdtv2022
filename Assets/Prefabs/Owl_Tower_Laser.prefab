@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Laser TOwl
-  cost: 200
+  cost: 300
   targetingSpeed: 5
   damageUpgrade: {fileID: 2325062551464015049, guid: c32c3758b24d3fb48a0d97dc1d07fcd3, type: 3}
   attackDelayUpgrade: {fileID: 2325062551464015049, guid: 591f9f81738f4c348a551b9222ece6e7, type: 3}

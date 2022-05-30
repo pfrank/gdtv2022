@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Pew Pew TOwl
-  cost: 100
+  cost: 150
   targetingSpeed: 5
   damageUpgrade: {fileID: 2325062551464015049, guid: 349e2db977061ab489209bafef21dd31, type: 3}
   attackDelayUpgrade: {fileID: 2325062551464015049, guid: e8c41709cea4d374b8b9fc39d912e1b2, type: 3}

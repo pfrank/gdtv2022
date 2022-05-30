@@ -60,6 +60,10 @@ PrefabInstance:
       value: Enemy3_Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 6778675459135037226, guid: 7f9562bb12839cc4c868804b5bc415c6, type: 3}
+      propertyPath: speed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778675459135037226, guid: 7f9562bb12839cc4c868804b5bc415c6, type: 3}
       propertyPath: ghostForm
       value: 
       objectReference: {fileID: 0}

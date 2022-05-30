@@ -961,7 +961,7 @@ MonoBehaviour:
   health: 250
   damage: 20
   speed: 8
-  gold: 20
+  gold: 15
   ghostForm: {fileID: 4637212020513645104, guid: ae67ba2595e98b04b8d84cc65ed91e58, type: 3}
 --- !u!136 &3380481342854182579
 CapsuleCollider:

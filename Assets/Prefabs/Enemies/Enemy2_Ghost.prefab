@@ -12,6 +12,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 1b4a20ce093561d488daf2baa67b659a, type: 2}
     - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+      propertyPath: speed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922542463875130599, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
       propertyPath: ghostForm
       value: 
       objectReference: {fileID: 0}

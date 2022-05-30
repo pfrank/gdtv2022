@@ -54,4 +54,8 @@ MonoBehaviour:
   - cost: 10
     newValue: 14
   - cost: 10
-    newValue: 8
+    newValue: 16
+  - cost: 10
+    newValue: 18
+  - cost: 10
+    newValue: 20

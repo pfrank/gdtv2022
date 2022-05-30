@@ -55,3 +55,5 @@ MonoBehaviour:
     newValue: 1
   - cost: 10
     newValue: 0.5
+  - cost: 10
+    newValue: 0.5

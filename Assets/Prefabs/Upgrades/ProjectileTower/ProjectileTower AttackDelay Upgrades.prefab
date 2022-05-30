@@ -48,24 +48,14 @@ MonoBehaviour:
   - cost: 550
     newValue: 0.5
   - cost: 0
-    newValue: 0.8
+    newValue: 1.5
   - cost: 30
-    newValue: 1.4
-  - cost: 60
     newValue: 1.3
-  - cost: 90
-    newValue: 1.2
-  - cost: 120
+  - cost: 60
     newValue: 1.1
-  - cost: 400
-    newValue: 1
-  - cost: 450
+  - cost: 90
     newValue: 0.9
-  - cost: 500
-    newValue: 0.8
-  - cost: 550
+  - cost: 120
     newValue: 0.7
-  - cost: 500
-    newValue: 0.6
-  - cost: 550
+  - cost: 120
     newValue: 0.5

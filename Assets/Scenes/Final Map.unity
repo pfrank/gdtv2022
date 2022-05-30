@@ -9950,7 +9950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526255, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: startingGold
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8187366738654526255, guid: 8c1437129bd8bd540aac997af6aacb17, type: 3}
       propertyPath: timeBetweenWaves

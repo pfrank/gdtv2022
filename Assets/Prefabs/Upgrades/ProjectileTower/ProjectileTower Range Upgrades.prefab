@@ -48,10 +48,10 @@ MonoBehaviour:
   - cost: 10
     newValue: 25
   - cost: 0
-    newValue: 10
-  - cost: 10
-    newValue: 15
-  - cost: 10
-    newValue: 20
-  - cost: 10
     newValue: 25
+  - cost: 10
+    newValue: 30
+  - cost: 10
+    newValue: 35
+  - cost: 10
+    newValue: 40
