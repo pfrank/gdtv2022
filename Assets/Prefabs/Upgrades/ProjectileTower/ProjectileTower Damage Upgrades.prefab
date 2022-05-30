@@ -45,11 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeList:
+  - cost: 10
+    newValue: 8
   - cost: 0
-    newValue: 1
+    newValue: 10
   - cost: 10
-    newValue: 2
+    newValue: 12
   - cost: 10
-    newValue: 4
+    newValue: 14
   - cost: 10
     newValue: 8

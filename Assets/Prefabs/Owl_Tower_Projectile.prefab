@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5814b3943cb4f9418e73eaa6777ff23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: Projectile Owl
+  displayName: Pew Pew TOwl
   cost: 100
   targetingSpeed: 5
   damageUpgrade: {fileID: 2325062551464015049, guid: 349e2db977061ab489209bafef21dd31, type: 3}

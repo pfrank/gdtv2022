@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeList:
+  - cost: 550
+    newValue: 0.5
   - cost: 0
-    newValue: 1.5
+    newValue: 0.8
   - cost: 30
     newValue: 1.4
   - cost: 60
