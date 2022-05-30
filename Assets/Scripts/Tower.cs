@@ -17,6 +17,10 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
     private int attackDelayUpgradeLevel = 1;
     private int rangeUpgradeLevel = 1;
 
+    public string DamageUpgradeButtonText { get; private set; }
+    public string SpeedUpgradeButtonText { get; private set; }
+    public string RangeUpgradeButtonText { get; private set; }
+
     private Weapon weapon;
     private float attackWait = 0f;
     private Transform turret;
@@ -304,7 +308,8 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = damageUpgrade.UpgradeList[damageUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Damage", $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)");
+                DamageUpgradeButtonText = $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)";
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Damage", DamageUpgradeButtonText);
             }
         }
     }
@@ -326,7 +331,8 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = attackDelayUpgrade.UpgradeList[attackDelayUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", $"+{nextUpgrade.NewValue - upgrade.NewValue:.#} ({nextUpgrade.Cost}GP)");
+                SpeedUpgradeButtonText = $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)";
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Speed", SpeedUpgradeButtonText);
             }
         }
     }
@@ -349,7 +355,8 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
             else
             {
                 UpgradeEntry nextUpgrade = rangeUpgrade.UpgradeList[rangeUpgradeLevel];
-                GameManager.Instance.UiManager.SetUpgradeButtonText("Range", $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)");
+                RangeUpgradeButtonText = $"+{nextUpgrade.NewValue - upgrade.NewValue} ({nextUpgrade.Cost}GP)";
+                GameManager.Instance.UiManager.SetUpgradeButtonText("Range", RangeUpgradeButtonText);
             }
         }
     }

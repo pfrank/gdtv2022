@@ -199,6 +199,9 @@ public class UIManager : MonoBehaviour
         towerRange.text = $"Range: {tower.AttackRange}";
         towerKills.text = $"Kills: {tower.Kills}";
 
+        SetUpgradeButtonText("Damage", tower.DamageUpgradeButtonText);
+        SetUpgradeButtonText("Speed", tower.SpeedUpgradeButtonText);
+        SetUpgradeButtonText("Range", tower.RangeUpgradeButtonText);
         if (!tower.IsDamageMaxLevel)
             ShowUpgradeButton("Damage");
         else
