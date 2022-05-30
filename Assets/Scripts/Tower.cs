@@ -83,7 +83,7 @@ public class Tower : MonoBehaviour, IPausable, ISelectable
     {
         get
         {
-            return 1;
+            return damageUpgradeLevel + attackDelayUpgradeLevel + rangeUpgradeLevel - 5;
         }
     }
     public int Damage
