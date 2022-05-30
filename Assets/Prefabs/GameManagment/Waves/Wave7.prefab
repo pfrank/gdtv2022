@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8991433287797559276}
   - component: {fileID: 7166965428035546061}
   m_Layer: 0
-  m_Name: Wave2
+  m_Name: Wave7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,23 +45,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList:
+  - spawnTime: 1.5
+    enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
   - spawnTime: 0
-    enemyPrefab: {fileID: 0}
-  - spawnTime: 0
+    enemyPrefab: {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
+    enemyPrefab: {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
+    enemyPrefab: {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
+    enemyPrefab: {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+  - spawnTime: 4
+    enemyPrefab: {fileID: 6583321677787045415, guid: 7f9562bb12839cc4c868804b5bc415c6, type: 3}
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
+    enemyPrefab: {fileID: 8601775535470407800, guid: f9f5dd183e3ad4042a7ebc5b156cf414, type: 3}
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}
-  - spawnTime: 1.5
+  - spawnTime: 1
     enemyPrefab: {fileID: 3209245775107365388, guid: c9bdd1d868b71f1468017a2b5252d117, type: 3}

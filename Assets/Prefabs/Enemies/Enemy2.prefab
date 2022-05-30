@@ -958,7 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Moai Demon
-  health: 250
+  health: 350
   damage: 20
   speed: 8
   gold: 15
