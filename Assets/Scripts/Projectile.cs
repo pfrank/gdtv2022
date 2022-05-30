@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour, IPausable
     private void OnTriggerEnter(Collider other)
     {
         Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy != null)
+        if (enemy != null && enemy.Alive)
             enemy.TakeDamage(firedBy, firedBy.Damage);
 
         if (other.tag != "Tower")

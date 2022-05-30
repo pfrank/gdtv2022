@@ -18,6 +18,14 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
 
     private Transform selectionIndicator;
 
+    public bool Alive
+    {
+        get
+        {
+            return alive;
+        }
+    }
+
     public string DisplayName
     {
         get

@@ -39,7 +39,7 @@ public class LaserWeapon : Weapon
         foreach (RaycastHit hit in hits)
         {
             Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy != null && enemy.Alive)
                 enemy.TakeDamage(tower, tower.Damage);
 
         }
