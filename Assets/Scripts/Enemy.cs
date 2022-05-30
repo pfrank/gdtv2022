@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
     private Path path;
     private int currWaypointIndex = 0;
 
+    private bool alive = true;
     private bool paused = false;
 
     private Transform selectionIndicator;
@@ -125,17 +126,22 @@ public class Enemy : MonoBehaviour, IPausable, ISelectable
 
     public void TakeDamage(Tower attacker, int damage)
     {
-        health -= damage;
-        GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
-
-        if (health <= 0)
+        if (alive)
         {
-            Killed(attacker);
+            health -= damage;
+            GameManager.Instance.UiManager.UpdateSelectedObjectInfo();
+
+            if (health <= 0)
+            {
+                health = 0;
+                Killed(attacker);
+            }
         }
     }
 
     private void Killed(Tower tower)
     {
+        alive = false;
         tower.Kills += 1;
         GameManager.Instance.AddGold(gold);
 

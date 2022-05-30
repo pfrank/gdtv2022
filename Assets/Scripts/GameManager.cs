@@ -117,9 +117,9 @@ public class GameManager : MonoBehaviour
             gameStateMachine.SwitchState(new PreWaveGameState(gameStateMachine, timeBetweenWaves));
     }
 
-    public void AddGold(int deducted)
+    public void AddGold(int added)
     {
-        currentGold += deducted;
+        currentGold += added;
         gameObject.GetComponent<AudioSource>().PlayOneShot(enemyKilled);
         uiManager.SetGold(currentGold);
     }
