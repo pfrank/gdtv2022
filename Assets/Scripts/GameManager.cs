@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private WaveManager waveManager;
     private UIManager uiManager;
 
-    private int currentWave = 0;
+    [SerializeField] private int currentWave = 0;
 
     private BaseGameState pausedGameState;
 
